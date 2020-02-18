@@ -47,95 +47,72 @@ params = (
     ('locations', 'Cassis_13260'),
 )
 tree = None
-# response = requests.get('https://www.leboncoin.fr/recherche/',
-#                         headers=headers, params=params, cookies=cookies)
-# if response.status_code == 200:
-#     # write to file
-#     with open('sample_response.html', 'w', encoding='utf-8') as f:
-#         f.write(response.text)
-#         f.close()
-
-#     with open("sample_response.html", 'r', encoding='utf-8') as f:
-#         tree = html.fromstring(f.read())
-#         f.close()
-#     assert tree is not None
-#     print(tree.xpath("//body/script[5]"))
-# # do xPATH to script window.__REDIAL_PROPS__
-# # convert content to json
-# #
-# else:
-#     print("error occured: ", response.status_code)
-
-with open("sample_response.html", 'r', encoding='utf-8') as f:
-    tree = html.fromstring(f.read())
-    f.close()
+response = requests.get('https://www.leboncoin.fr/recherche/',
+                        headers=headers, params=params, cookies=cookies)
+if response.status_code == 200:
+    # write to file
+    tree = html.fromstring(response.content)
+# do xPATH to script window.__REDIAL_PROPS__
+# convert content to json
+#
+else:
+    print("error occured: ", response.status_code)
 assert tree is not None
-# xpath produces single element list
 data = tree.xpath("//body/script[5]/text()")[0]
 data = str(data)
+with open('dirty.txt', 'w', encoding='utf-8') as f:
+    f.write(data)
+    f.close()
 # print(data.index("pivot"))
 # data = data.split("],")  # this is probably fine
 # # slice everything from null to pivot
 # try to clean dataset
-data = data[1140:]
+# print(json.dumps(data))
+#data = data[1140:]
 # the only way to search a string is through regular expressions
 # Might be time for some regular expressions!!!!!s
 # this list contains data that is not present in the demo.lxls file
 patterns = [
-    r'"images"\:\s+\W+([\w+\W+]*?)\},',
-    r'"body"\:\s+\W+([\w+\W+]*?)\",',
-    r'"location"\:\s+([\W+\w+]*?)\}\s+\S+',
-    r'"owner"\:\s+\W+([\w+\W+]*?)\},',
-    r'"options"\:\s+([\W+\w+]*?)\}\,',
-    r',\s+\"properties"\:\s+([\W+\w+]*?)\}',
-    r'"status"\:\s+([\W+\w+]*?)\}'
+    r'"images"\:\W+([\w+\W+]*?)\}\,',
+    r'"body"\:\W+([\w+\W+]*?)\",',
+    r'"location"\:([\W+\w+]*?)\}',
+    r'"owner"\:\W+([\w+\W+]*?)\},',
+    r'"options"\:([\W+\w+]*?)\}\,'
 ]
 
-# the clean function removes all fields not included in the provided output.xlsx file
-# assuming they are not needed
+# # the clean function removes all fields not included in the provided output.xlsx file
+# # assuming they are not needed
 
 
-def clean(patterns: list, param):
-    target_string = param
+def clean(patterns: list, data_list: str):  # works fine
+    target_string = data_list
     for pattern in patterns:
         target_string = re.sub(pattern, '', target_string)
-    assert target_string != param
+    assert target_string != data_list
     return target_string
 
 
 data = clean(patterns, data)
 
-# find last occurence of has phone
-# returns a list of indices of all occurrences of has_phone
-print("before strip")
-print([s.start() for s in re.finditer("has_phone", data)])
-print(data[101921:])
-data = data.strip()
-print("after strip")
-last = [s.start() for s in re.finditer("}", data)][-2]
-print(data[last])
-data = data[:last + 1]
-
 with open('clean.txt', 'w', encoding='utf-8') as f:
     f.write(data)
-# split from has_phone true
-data = data.split('"has_phone": true' +
-                  '},')
+    f.close()
 
-# next step is to make this work
-for i in data:
-    # use regular expression to extract desired fields from each i
-    pass
+# # find last occurence of has phone
+# # returns a list of indices of all occurrences of has_phone
+# data = data.strip()
+# print("after strip")
+# last = [s.start() for s in re.finditer("}", data)][-2]
+# # print(data[last])
+# data = data[:last + 1]
 
-    # print(json.dumps(data))
-    # with open('output.json', 'w', encoding='utf-8') as f:
-    #     f.write(json.dumps(data))
+# with open('clean.txt', 'w', encoding='utf-8') as f:
+#     f.write(data)
 
-    # def check_count(data, pattern):
-    #     pattern = re.compile(pattern)  # pattern should be raw string
-    #     matches = pattern.finditer(data)
-    #     count = 0
-    #     for match in matches:
-    #         count += 1
-    #         print(match)
-    #     print(count)
+checklist = re.findall(
+    r'{(\"list_id"\:([\W+\w+]*?)\"has_phone"\:\w+\})', data)
+
+# checklist = [r.strip(" ") for r in checklist]
+
+print(len(checklist))
+print(checklist[0])
