@@ -76,28 +76,66 @@ data = str(data)
 # print(data.index("pivot"))
 # data = data.split("],")  # this is probably fine
 # # slice everything from null to pivot
-data = data[1130:]
-
 # try to clean dataset
+data = data[1140:]
 # the only way to search a string is through regular expressions
 # Might be time for some regular expressions!!!!!s
-# write a filter & lambda that remove all elements
-# not included in output.xslx
+# this list contains data that is not present in the demo.lxls file
+patterns = [
+    r'"images"\:\s+\W+([\w+\W+]*?)\},',
+    r'"body"\:\s+\W+([\w+\W+]*?)\",',
+    r'"location"\:\s+([\W+\w+]*?)\}\s+\S+',
+    r'"owner"\:\s+\W+([\w+\W+]*?)\},',
+    r'"options"\:\s+([\W+\w+]*?)\}\,',
+    r',\s+\"properties"\:\s+([\W+\w+]*?)\}',
+    r'"status"\:\s+([\W+\w+]*?)\}'
+]
 
-# EXECUTE REGULAR EXPRESSION IN A LOOP FOR EVERY I IN DATA ????
-# extract "ads"  section from using regex
-# s = s = r'\"abs\":'
-# pattern = re.compile(s)
-# matches = pattern.finditer(data)
-# # identify the matches and use them to build another dataset
-# for match in matches:
-#     print(match)
-# REGEX = "ads"\:\s+\[\s+\{\s+([\s\S]*)
-# "ads"\:\s+\[\s+\{\s+([^<>]*)
-# "ads"\W+([^<>]*)
-# pattern = re.compile(r"ads\W+([^<>]*)")
+# the clean function removes all fields not included in the provided output.xlsx file
+# assuming they are not needed
 
-# for i in data:
-#     matches = pattern.finditer(i)
-#     for match in matches:
-#         print(match)
+
+def clean(patterns: list, param):
+    target_string = param
+    for pattern in patterns:
+        target_string = re.sub(pattern, '', target_string)
+    assert target_string != param
+    return target_string
+
+
+data = clean(patterns, data)
+
+# find last occurence of has phone
+# returns a list of indices of all occurrences of has_phone
+print("before strip")
+print([s.start() for s in re.finditer("has_phone", data)])
+print(data[101921:])
+data = data.strip()
+print("after strip")
+last = [s.start() for s in re.finditer("}", data)][-2]
+print(data[last])
+data = data[:last + 1]
+
+with open('clean.txt', 'w', encoding='utf-8') as f:
+    f.write(data)
+# split from has_phone true
+data = data.split('"has_phone": true' +
+                  '},')
+
+# next step is to make this work
+for i in data:
+    # use regular expression to extract desired fields from each i
+    pass
+
+    # print(json.dumps(data))
+    # with open('output.json', 'w', encoding='utf-8') as f:
+    #     f.write(json.dumps(data))
+
+    # def check_count(data, pattern):
+    #     pattern = re.compile(pattern)  # pattern should be raw string
+    #     matches = pattern.finditer(data)
+    #     count = 0
+    #     for match in matches:
+    #         count += 1
+    #         print(match)
+    #     print(count)

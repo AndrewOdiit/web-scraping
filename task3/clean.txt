@@ -1,0 +1,2062 @@
+{
+                "list_id": 1751365000,
+                "first_publication_date": "2020-02-16 18:59:57",
+                "expiration_date": "2020-04-16 18:59:57",
+                "index_date": "2020-02-16 18:59:57",
+                , {
+                    "key": "square",
+                    "value": "57",
+                    "key_label": "Surface",
+                    "value_label": "57 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": false
+              }, {
+                "list_id": 1718176255,
+                "first_publication_date": "2020-02-04 18:29:03",
+                "expiration_date": "2020-04-04 18:29:03",
+                "index_date": "2020-02-16 18:13:01",
+                , {
+                    "key": "square",
+                    "value": "30",
+                    "key_label": "Surface",
+                    "value_label": "30 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "1",
+                    "key_label": "Pièces",
+                    "value_label": "1",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "c",
+                    "key_label": "GES",
+                    "value_label": "C (de 11 à 20)",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1744059433,
+                "first_publication_date": "2020-02-01 11:18:25",
+                "index_date": "2020-02-16 16:47:40",
+                , {
+                    "key": "square",
+                    "value": "90",
+                    "key_label": "Surface",
+                    "value_label": "90 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "a",
+                    "key_label": "GES",
+                    "value_label": "A (moins de 5)",
+                    "generic": true
+                  }, {
+                    "key": "custom_ref",
+                    "value": "29457271",
+                    "key_label": "Référence",
+                    "value_label": "29457271",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1750928813,
+                "first_publication_date": "2020-02-15 18:58:59",
+                "index_date": "2020-02-15 18:58:59",
+                , {
+                    "key": "square",
+                    "value": "80",
+                    "key_label": "Surface",
+                    "value_label": "80 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "v",
+                    "key_label": "Classe énergie",
+                    "value_label": "Vierge",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fmedia10.ac3-distribution.com\u002Fsegments\u002Fimmo\u002Fcatalog\u002Fimages\u002Fmanufacturers_bareme\u002F121426.pdf",
+                    "value_label": "http:\u002F\u002Fmedia10.ac3-distribution.com\u002Fsegments\u002Fimmo\u002Fcatalog\u002Fimages\u002Fmanufacturers_bareme\u002F121426.pdf",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "4639as-ar16",
+                    "key_label": "Référence",
+                    "value_label": "4639as-ar16",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1637460170,
+                "first_publication_date": "2019-12-28 16:30:08",
+                "expiration_date": "2020-02-26 16:30:08",
+                "index_date": "2020-02-15 15:30:07",
+                , {
+                    "key": "real_estate_type",
+                    "value": "2",
+                    "key_label": "Type de bien",
+                    "value_label": "Appartement",
+                    "generic": true
+                  }, {
+                    "key": "square",
+                    "value": "47",
+                    "key_label": "Surface",
+                    "value_label": "47 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "2",
+                    "key_label": "Pièces",
+                    "value_label": "2",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "a",
+                    "key_label": "GES",
+                    "value_label": "A (moins de 5)",
+                    "generic": true
+                  }, {
+                    "key": "fai_included",
+                    "value": "1",
+                    "key_label": "Honoraires",
+                    "value_label": "Oui",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.confidential-realestate.com\u002Fi\u002Fredac\u002Fhonoraires",
+                    "value_label": "http:\u002F\u002Fwww.confidential-realestate.com\u002Fi\u002Fredac\u002Fhonoraires",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "169",
+                    "key_label": "Référence",
+                    "value_label": "169",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1637456873,
+                "first_publication_date": "2019-12-28 16:23:33",
+                "expiration_date": "2020-02-26 16:23:33",
+                "index_date": "2020-02-15 15:23:33",
+                , {
+                    "key": "square",
+                    "value": "38",
+                    "key_label": "Surface",
+                    "value_label": "38 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "1",
+                    "key_label": "Pièces",
+                    "value_label": "1",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "a",
+                    "key_label": "GES",
+                    "value_label": "A (moins de 5)",
+                    "generic": true
+                  }, {
+                    "key": "fai_included",
+                    "value": "1",
+                    "key_label": "Honoraires",
+                    "value_label": "Oui",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.confidential-realestate.com\u002Fi\u002Fredac\u002Fhonoraires",
+                    "value_label": "http:\u002F\u002Fwww.confidential-realestate.com\u002Fi\u002Fredac\u002Fhonoraires",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "169.2",
+                    "key_label": "Référence",
+                    "value_label": "169.2",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1637467957,
+                "first_publication_date": "2019-12-28 16:17:03",
+                "expiration_date": "2020-02-26 16:17:03",
+                "index_date": "2020-02-15 15:17:03",
+                , {
+                    "key": "square",
+                    "value": "91",
+                    "key_label": "Surface",
+                    "value_label": "91 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "a",
+                    "key_label": "GES",
+                    "value_label": "A (moins de 5)",
+                    "generic": true
+                  }, {
+                    "key": "fai_included",
+                    "value": "1",
+                    "key_label": "Honoraires",
+                    "value_label": "Oui",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.confidential-realestate.com\u002Fi\u002Fredac\u002Fhonoraires",
+                    "value_label": "http:\u002F\u002Fwww.confidential-realestate.com\u002Fi\u002Fredac\u002Fhonoraires",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "169.3",
+                    "key_label": "Référence",
+                    "value_label": "169.3",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1750929015,
+                "first_publication_date": "2020-02-15 14:08:25",
+                "index_date": "2020-02-15 14:08:25",
+                , {
+                    "key": "square",
+                    "value": "34",
+                    "key_label": "Surface",
+                    "value_label": "34 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "2",
+                    "key_label": "Pièces",
+                    "value_label": "2",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fmedia10.ac3-distribution.com\u002Fsegments\u002Fimmo\u002Fcatalog\u002Fimages\u002Fmanufacturers_bareme\u002F121426.pdf",
+                    "value_label": "http:\u002F\u002Fmedia10.ac3-distribution.com\u002Fsegments\u002Fimmo\u002Fcatalog\u002Fimages\u002Fmanufacturers_bareme\u002F121426.pdf",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "4220ph16",
+                    "key_label": "Référence",
+                    "value_label": "4220ph16",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1678098516,
+                "first_publication_date": "2019-09-20 10:20:09",
+                "index_date": "2020-02-15 10:22:52",
+                , {
+                    "key": "square",
+                    "value": "140",
+                    "key_label": "Surface",
+                    "value_label": "140 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "6",
+                    "key_label": "Pièces",
+                    "value_label": "6",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "b",
+                    "key_label": "Classe énergie",
+                    "value_label": "B (de 51 à 90)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "d",
+                    "key_label": "GES",
+                    "value_label": "D (de 21 à 35)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2680",
+                    "key_label": "Référence",
+                    "value_label": "2680",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1626943882,
+                "first_publication_date": "2019-06-04 12:22:52",
+                "index_date": "2020-02-15 10:21:44",
+                , {
+                    "key": "square",
+                    "value": "80",
+                    "key_label": "Surface",
+                    "value_label": "80 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "a",
+                    "key_label": "GES",
+                    "value_label": "A (moins de 5)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2631",
+                    "key_label": "Référence",
+                    "value_label": "2631",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1740190115,
+                "first_publication_date": "2020-01-24 08:51:01",
+                "index_date": "2020-02-15 10:21:10",
+                , {
+                    "key": "square",
+                    "value": "24",
+                    "key_label": "Surface",
+                    "value_label": "24 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "1",
+                    "key_label": "Pièces",
+                    "value_label": "1",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2738",
+                    "key_label": "Référence",
+                    "value_label": "2738",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1720284251,
+                "first_publication_date": "2019-12-10 10:09:30",
+                "index_date": "2020-02-15 10:20:39",
+                , {
+                    "key": "square",
+                    "value": "30",
+                    "key_label": "Surface",
+                    "value_label": "30 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "1",
+                    "key_label": "Pièces",
+                    "value_label": "1",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "v",
+                    "key_label": "Classe énergie",
+                    "value_label": "Vierge",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2717",
+                    "key_label": "Référence",
+                    "value_label": "2717",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1724745795,
+                "first_publication_date": "2019-12-20 12:02:00",
+                "index_date": "2020-02-14 12:21:25",
+                , {
+                    "key": "rooms",
+                    "value": "4",
+                    "key_label": "Pièces",
+                    "value_label": "4",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "https:\u002F\u002Fassets.adaptimmo.com\u002Fbareme\u002F13021\u002F13021\u002Fbareme.pdf",
+                    "value_label": "https:\u002F\u002Fassets.adaptimmo.com\u002Fbareme\u002F13021\u002F13021\u002Fbareme.pdf",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "1302962917",
+                    "key_label": "Référence",
+                    "value_label": "1302962917",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1750349615,
+                "first_publication_date": "2020-02-14 07:59:10",
+                "index_date": "2020-02-14 07:59:10",
+                , {
+                    "key": "square",
+                    "value": "73",
+                    "key_label": "Surface",
+                    "value_label": "73 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.carnoux-immobilier.com\u002Fi\u002Fredac\u002Fhonoraires?honofor=1",
+                    "value_label": "http:\u002F\u002Fwww.carnoux-immobilier.com\u002Fi\u002Fredac\u002Fhonoraires?honofor=1",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2843",
+                    "key_label": "Référence",
+                    "value_label": "2843",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1621251021,
+                "first_publication_date": "2019-05-23 09:50:30",
+                "index_date": "2020-02-13 22:27:01",
+                , {
+                    "key": "square",
+                    "value": "78",
+                    "key_label": "Surface",
+                    "value_label": "78 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "4",
+                    "key_label": "Pièces",
+                    "value_label": "4",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2626",
+                    "key_label": "Référence",
+                    "value_label": "2626",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1750021339,
+                "first_publication_date": "2020-02-13 17:51:58",
+                "index_date": "2020-02-13 17:51:58",
+                , {
+                    "key": "square",
+                    "value": "90",
+                    "key_label": "Surface",
+                    "value_label": "90 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "6",
+                    "key_label": "Pièces",
+                    "value_label": "6",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "e",
+                    "key_label": "Classe énergie",
+                    "value_label": "E (de 231 à 330)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "f",
+                    "key_label": "GES",
+                    "value_label": "F (de 56 à 80)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fmedia8.ac3-distribution.com\u002Fsegments\u002Fimmo\u002Fcatalog\u002Fimages\u002Fmanufacturers_bareme\u002F166231.pdf",
+                    "value_label": "http:\u002F\u002Fmedia8.ac3-distribution.com\u002Fsegments\u002Fimmo\u002Fcatalog\u002Fimages\u002Fmanufacturers_bareme\u002F166231.pdf",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "469",
+                    "key_label": "Référence",
+                    "value_label": "469",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1746469571,
+                "first_publication_date": "2020-02-06 17:55:10",
+                "expiration_date": "2020-04-06 17:55:10",
+                "index_date": "2020-02-13 16:55:10",
+                , {
+                    "key": "square",
+                    "value": "56",
+                    "key_label": "Surface",
+                    "value_label": "56 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "Non renseigné",
+                    "key_label": "Classe énergie",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "fai_included",
+                    "value": "1",
+                    "key_label": "Honoraires",
+                    "value_label": "Oui",
+                    "generic": true
+                  }, {
+                    "key": "custom_ref",
+                    "value": "AUT",
+                    "key_label": "Référence",
+                    "value_label": "AUT",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1746456195,
+                "first_publication_date": "2020-02-06 17:31:06",
+                "expiration_date": "2020-04-06 17:31:06",
+                "index_date": "2020-02-13 16:31:11",
+                , {
+                    "key": "square",
+                    "value": "64",
+                    "key_label": "Surface",
+                    "value_label": "64 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "Non renseigné",
+                    "key_label": "Classe énergie",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "fai_included",
+                    "value": "1",
+                    "key_label": "Honoraires",
+                    "value_label": "Oui",
+                    "generic": true
+                  }, {
+                    "key": "custom_ref",
+                    "value": "DEM",
+                    "key_label": "Référence",
+                    "value_label": "DEM",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1746430289,
+                "first_publication_date": "2020-02-06 16:36:15",
+                "expiration_date": "2020-04-06 16:36:15",
+                "index_date": "2020-02-13 15:36:15",
+                , {
+                    "key": "square",
+                    "value": "48",
+                    "key_label": "Surface",
+                    "value_label": "48 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "2",
+                    "key_label": "Pièces",
+                    "value_label": "2",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "e",
+                    "key_label": "GES",
+                    "value_label": "E (de 36 à 55)",
+                    "generic": true
+                  }, {
+                    "key": "fai_included",
+                    "value": "1",
+                    "key_label": "Honoraires",
+                    "value_label": "Oui",
+                    "generic": true
+                  }, {
+                    "key": "custom_ref",
+                    "value": "MEY",
+                    "key_label": "Référence",
+                    "value_label": "MEY",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1749675271,
+                "first_publication_date": "2020-02-13 11:08:05",
+                "expiration_date": "2020-04-13 11:08:05",
+                "index_date": "2020-02-13 11:08:05",
+                , {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "c",
+                    "key_label": "GES",
+                    "value_label": "C (de 11 à 20)",
+                    "generic": true
+                  }, {
+                    "key": "fai_included",
+                    "value": "2",
+                    "key_label": "Honoraires",
+                    "value_label": "Non",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1608041536,
+                "first_publication_date": "2019-04-29 09:58:13",
+                "index_date": "2020-02-13 10:55:46",
+                , {
+                    "key": "square",
+                    "value": "75",
+                    "key_label": "Surface",
+                    "value_label": "75 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "Non renseigné",
+                    "key_label": "Classe énergie",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "custom_ref",
+                    "value": "va_401",
+                    "key_label": "Référence",
+                    "value_label": "va_401",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1743516630,
+                "first_publication_date": "2020-01-31 13:12:04",
+                "index_date": "2020-02-13 09:31:10",
+                , {
+                    "key": "square",
+                    "value": "31",
+                    "key_label": "Surface",
+                    "value_label": "31 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "1",
+                    "key_label": "Pièces",
+                    "value_label": "1",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "Non renseigné",
+                    "key_label": "Classe énergie",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2745",
+                    "key_label": "Référence",
+                    "value_label": "2745",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1732670040,
+                "first_publication_date": "2020-01-08 08:07:23",
+                "index_date": "2020-02-13 09:30:40",
+                , {
+                    "key": "square",
+                    "value": "150",
+                    "key_label": "Surface",
+                    "value_label": "150 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "5",
+                    "key_label": "Pièces",
+                    "value_label": "5",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "b",
+                    "key_label": "Classe énergie",
+                    "value_label": "B (de 51 à 90)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "a",
+                    "key_label": "GES",
+                    "value_label": "A (moins de 5)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2726",
+                    "key_label": "Référence",
+                    "value_label": "2726",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1710517081,
+                "first_publication_date": "2019-11-21 09:41:21",
+                "index_date": "2020-02-13 09:30:18",
+                , {
+                    "key": "square",
+                    "value": "102",
+                    "key_label": "Surface",
+                    "value_label": "102 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "4",
+                    "key_label": "Pièces",
+                    "value_label": "4",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "d",
+                    "key_label": "GES",
+                    "value_label": "D (de 21 à 35)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2708",
+                    "key_label": "Référence",
+                    "value_label": "2708",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1749799010,
+                "first_publication_date": "2020-02-13 08:35:21",
+                "index_date": "2020-02-13 08:35:21",
+                , {
+                    "key": "rooms",
+                    "value": "1",
+                    "key_label": "Pièces",
+                    "value_label": "1",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "v",
+                    "key_label": "Classe énergie",
+                    "value_label": "Vierge",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "https:\u002F\u002Fassets.adaptimmo.com\u002Fbareme\u002F13021\u002F13021\u002Fbareme.pdf",
+                    "value_label": "https:\u002F\u002Fassets.adaptimmo.com\u002Fbareme\u002F13021\u002F13021\u002Fbareme.pdf",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "1302964391",
+                    "key_label": "Référence",
+                    "value_label": "1302964391",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1695449496,
+                "first_publication_date": "2019-10-24 17:43:11",
+                "index_date": "2020-02-12 23:44:01",
+                , {
+                    "key": "square",
+                    "value": "54",
+                    "key_label": "Surface",
+                    "value_label": "54 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "2",
+                    "key_label": "Pièces",
+                    "value_label": "2",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "e",
+                    "key_label": "GES",
+                    "value_label": "E (de 36 à 55)",
+                    "generic": true
+                  }, {
+                    "key": "custom_ref",
+                    "value": "27818435",
+                    "key_label": "Référence",
+                    "value_label": "27818435",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1748969607,
+                "first_publication_date": "2020-02-11 18:30:04",
+                "expiration_date": "2020-04-11 18:30:04",
+                "index_date": "2020-02-12 11:12:58",
+                , {
+                    "key": "square",
+                    "value": "59",
+                    "key_label": "Surface",
+                    "value_label": "59 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "2",
+                    "key_label": "Pièces",
+                    "value_label": "2",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "Non renseigné",
+                    "key_label": "Classe énergie",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "false",
+                    "value_label": "false",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1613639877,
+                "first_publication_date": "2019-05-09 09:49:43",
+                "index_date": "2020-02-11 16:52:15",
+                , {
+                    "key": "square",
+                    "value": "260",
+                    "key_label": "Surface",
+                    "value_label": "260 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "7",
+                    "key_label": "Pièces",
+                    "value_label": "7",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2620",
+                    "key_label": "Référence",
+                    "value_label": "2620",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1678444851,
+                "first_publication_date": "2019-09-21 08:11:35",
+                "index_date": "2020-02-11 16:10:00",
+                , {
+                    "key": "square",
+                    "value": "73",
+                    "key_label": "Surface",
+                    "value_label": "73 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2681",
+                    "key_label": "Référence",
+                    "value_label": "2681",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1667103212,
+                "first_publication_date": "2019-08-29 13:38:56",
+                "index_date": "2020-02-11 16:07:20",
+                , {
+                    "key": "square",
+                    "value": "130",
+                    "key_label": "Surface",
+                    "value_label": "130 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "4",
+                    "key_label": "Pièces",
+                    "value_label": "4",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "c",
+                    "key_label": "Classe énergie",
+                    "value_label": "C (de 91 à 150)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "a",
+                    "key_label": "GES",
+                    "value_label": "A (moins de 5)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2667",
+                    "key_label": "Référence",
+                    "value_label": "2667",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1560910917,
+                "first_publication_date": "2019-01-29 10:21:03",
+                "index_date": "2020-02-11 16:06:54",
+                , {
+                    "key": "square",
+                    "value": "156",
+                    "key_label": "Surface",
+                    "value_label": "156 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "6",
+                    "key_label": "Pièces",
+                    "value_label": "6",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "e",
+                    "key_label": "Classe énergie",
+                    "value_label": "E (de 231 à 330)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "c",
+                    "key_label": "GES",
+                    "value_label": "C (de 11 à 20)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2561",
+                    "key_label": "Référence",
+                    "value_label": "2561",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1743155780,
+                "first_publication_date": "2020-01-30 14:34:33",
+                "index_date": "2020-02-11 16:06:08",
+                , {
+                    "key": "square",
+                    "value": "55",
+                    "key_label": "Surface",
+                    "value_label": "55 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2744",
+                    "key_label": "Référence",
+                    "value_label": "2744",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1702453912,
+                "first_publication_date": "2019-11-06 08:46:22",
+                "index_date": "2020-02-11 16:05:38",
+                , {
+                    "key": "square",
+                    "value": "89",
+                    "key_label": "Surface",
+                    "value_label": "89 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "d",
+                    "key_label": "Classe énergie",
+                    "value_label": "D (de 151 à 230)",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "b",
+                    "key_label": "GES",
+                    "value_label": "B (de 6 à 10)",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2697",
+                    "key_label": "Référence",
+                    "value_label": "2697",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1627076419,
+                "first_publication_date": "2019-06-04 17:50:57",
+                "index_date": "2020-02-11 16:05:04",
+                , {
+                    "key": "square",
+                    "value": "54",
+                    "key_label": "Surface",
+                    "value_label": "54 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "v",
+                    "key_label": "Classe énergie",
+                    "value_label": "Vierge",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "pro_rates_link",
+                    "value": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "value_label": "http:\u002F\u002Fwww.castellas-immobilier.com\u002F",
+                    "generic": false
+                  }, {
+                    "key": "custom_ref",
+                    "value": "2633",
+                    "key_label": "Référence",
+                    "value_label": "2633",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }, {
+                "list_id": 1748787795,
+                "first_publication_date": "2020-02-11 12:07:47",
+                "index_date": "2020-02-11 12:07:47",
+                , {
+                    "key": "square",
+                    "value": "56",
+                    "key_label": "Surface",
+                    "value_label": "56 m²",
+                    "generic": true
+                  }, {
+                    "key": "rooms",
+                    "value": "3",
+                    "key_label": "Pièces",
+                    "value_label": "3",
+                    "generic": true
+                  }, {
+                    "key": "energy_rate",
+                    "value": "Non renseigné",
+                    "key_label": "Classe énergie",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "ges",
+                    "value": "Non renseigné",
+                    "key_label": "GES",
+                    "value_label": "Non renseigné",
+                    "generic": true
+                  }, {
+                    "key": "custom_ref",
+                    "value": "va-450",
+                    "key_label": "Référence",
+                    "value_label": "va-450",
+                    "generic": true
+                  }, {
+                    "key": "immo_sell_type",
+                    "value": "old",
+                    "value_label": "old",
+                    "generic": false
+                  }, {
+                    "key": "is_import",
+                    "value": "true",
+                    "value_label": "true",
+                    "generic": false
+                  }, {
+                    "key": "lease_type",
+                    "value": "sell",
+                    "value_label": "sell",
+                    "generic": false
+                  }
+                ],
+                
+                
+                
+                "has_phone": true
+              }
