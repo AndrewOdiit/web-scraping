@@ -1,6 +1,12 @@
 import requests
-
+import json
+import csv
+from lxml import html
+import requests
+import re
+import ast
 cookies = {
+    'crfgL0cSt0r': 'true',
     '_gcl_au': '1.1.1572045614.1581602136',
     'cikneeto_uuid': 'id:fa1d0547-1bc4-4b71-8f3f-66daa7802b71',
     'xtvrn': '$562498$',
@@ -11,28 +17,87 @@ cookies = {
     'euconsent': 'BOutVWIOutZN0AHABBFRCv-AAAAstr_7__7-_9_-_f__9uj3Or_v_f__30ccL59v_B_zv-_7fi_20jV4u_1vft9yfk1-5ctDztp505iakivXmqdeb9v_nz3_5pxPr8k89r7337Ew_v8_v8b7BCIJ',
     'saveOnboarding': '1',
     'cookieFrame': '2',
-    'ry_ry-l3b0nco_so_realytics': 'eyJpZCI6InJ5X0E4Rjk1NTU1LTAzRjQtNDI5NC1BNzVCLTk5QkJCQkFDQTU1QyIsImNpZCI6bnVsbCwib3JpZ2luIjp0cnVlLCJyZWYiOm51bGwsImNvbnQiOm51bGwsIm5zIjpmYWxzZX0%3D',
-    '_pulse2data': '92e83110-2d91-4bb8-8310-02572f95d277%2Cv%2C%2C1581919342032%2CeyJpc3N1ZWRBdCI6IjIwMjAtMDItMTNUMTM6NTU6NDdaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..xbJPTAvCbxctS0Yn10Cz9A.Ira-ygrWznGHSF1b9-FeVBtuYp1SMpPT3vNE2zic2ggybeKqE92xUnarjWfYAzYXhFe6kfW1ygQNLBOjs3zervC-c86Kd82q3MTJ-tR7r-ZR2BDZUX76OlR7PCjFwu5zF3uZsKMV7iaY4uuNW_sdto3ocdB_fpTtwpOJCZeucJZkBuBJHzXZyMkU9p7q6EprTYOLlI0hqi0M_uW2Lukr8A.WdYdqAuGj0BuY2xCLKqHew%2C%2C0%2Ctrue%2C%2CeyJraWQiOiIyIiwiYWxnIjoiSFMyNTYifQ..QskdBilJSmSTMFEWFLumK_NubzQtVCX0rjiNEwtL73k',
+    'atidvisitor': '%7B%22name%22%3A%22atidvisitor%22%2C%22val%22%3A%7B%22vrn%22%3A%22-562498-%22%2C%22an%22%3A%22NaN%22%2C%22ac%22%3A%220%22%7D%2C%22options%22%3A%7B%22path%22%3A%22%2F%22%2C%22session%22%3A15724800%2C%22end%22%3A15724800%7D%7D',
+    'oas_ab': 'a',
+    'uuid': '2b21ce71-851a-4346-9635-5a6b75685003',
     '_fbp': 'fb.1.1581918967107.705022993',
     '__gads': 'ID=4e95566f9daf183a:T=1581918989:S=ALNI_MaJRroLal4D6jRlXiTV-hZ62ptmVg',
-    'cikneeto': 'date:1581919492450',
-    'datadome': 'K9AcE.ETb0bP21bqXB5gUykUk-rYDJmk80EqJ1TihLWJtCBH7VKq7FEOILpuf28fN_wlOHY~hM~7eg~ylvcHUTmIf.8_WQB-~K6xPAbRGt',
-    'utag_main': 'v_id:01703ed577b70017f38b29907dac03069004506100868$_sn:8$_ss:0$_st:1581921297469$_pn:5%3Bexp-session$ses_id:1581918429835%3Bexp-session',
+    'trc_cookie_storage': 'taboola%2520global%253Auser-id%3D48b945ef-5eb1-448f-bb7d-cfb45504236c-tuct4baa1ce',
+    'datadome': 'FAFOGRfW2nvannQc3_6Y8sgEKNDsy9sCznd1zbiVBv~mPP2BFHgRMeR5sV.n7bgxojtbzg6n~DOfk5T3Kxd3M9Z8zB72MLHXdpKKCEoQEV',
+    '_pulse2data': '92e83110-2d91-4bb8-8310-02572f95d277%2Cv%2C%2C1581927698393%2CeyJpc3N1ZWRBdCI6IjIwMjAtMDItMTNUMTM6NTU6NDdaIiwiZW5jIjoiQTEyOENCQy1IUzI1NiIsImFsZyI6ImRpciIsImtpZCI6IjIifQ..sqaEx2L5SV6DOJd43qR08w.NXKJMIyvoXUU9zTf9gK5QfaYzNWMfboDuURh2JK4JwU6B8l4gPczrW7P0O6EnazOwhFF9xGYWaaoU80dmi34SuP1XyryHfx5fWV2pw3-CYmTlwtqToZ-jgHutLfXKNZIpI_slgFiFPhCk9weyQAOpw_eBXbHZrBpAjzev8JNVISxAjB_NekoAZSinNxMI11WNZInLvwAGYH0Y0BvxGwJlQ.nmUXIVuSeunZ92xJbnWGlg%2C%2C0%2Ctrue%2C%2CeyJraWQiOiIyIiwiYWxnIjoiSFMyNTYifQ..QskdBilJSmSTMFEWFLumK_NubzQtVCX0rjiNEwtL73k',
+    'utag_main': 'v_id:01703ed577b70017f38b29907dac03069004506100868$_sn:8$_ss:0$_st:1581928644437',
+    'cikneeto': 'date:1581926844544',
 }
 
 headers = {
     'Connection': 'keep-alive',
-    'Sec-Fetch-Dest': 'empty',
+    'Cache-Control': 'max-age=0',
+    'Upgrade-Insecure-Requests': '1',
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Safari/537.36',
-    'Content-Type': 'application/json',
-    'Accept': '*/*',
-    'Origin': 'https://www.leboncoin.fr',
-    'Sec-Fetch-Site': 'same-site',
-    'Sec-Fetch-Mode': 'cors',
-    'Referer': 'https://www.leboncoin.fr/ventes_immobilieres/1751365000.htm/',
+    'Sec-Fetch-Dest': 'document',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Sec-Fetch-Site': 'none',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
     'Accept-Language': 'en-US,en-GB;q=0.9,en;q=0.8,fr;q=0.7',
 }
 
-response = requests.get(
-    'https://api.leboncoin.fr/api/same/v2/search/1751365000', headers=headers, cookies=cookies)
-print(response.content)
+params = (
+    ('category', '9'),
+    ('locations', 'Cassis_13260'),
+)
+tree = None
+# response = requests.get('https://www.leboncoin.fr/recherche/',
+#                         headers=headers, params=params, cookies=cookies)
+# if response.status_code == 200:
+#     # write to file
+#     with open('sample_response.html', 'w', encoding='utf-8') as f:
+#         f.write(response.text)
+#         f.close()
+
+#     with open("sample_response.html", 'r', encoding='utf-8') as f:
+#         tree = html.fromstring(f.read())
+#         f.close()
+#     assert tree is not None
+#     print(tree.xpath("//body/script[5]"))
+# # do xPATH to script window.__REDIAL_PROPS__
+# # convert content to json
+# #
+# else:
+#     print("error occured: ", response.status_code)
+
+with open("sample_response.html", 'r', encoding='utf-8') as f:
+    tree = html.fromstring(f.read())
+    f.close()
+assert tree is not None
+# xpath produces single element list
+data = tree.xpath("//body/script[5]/text()")[0]
+data = str(data)
+# print(data.index("pivot"))
+# data = data.split("],")  # this is probably fine
+# # slice everything from null to pivot
+data = data[1130:]
+
+# try to clean dataset
+# the only way to search a string is through regular expressions
+# Might be time for some regular expressions!!!!!s
+# write a filter & lambda that remove all elements
+# not included in output.xslx
+
+# EXECUTE REGULAR EXPRESSION IN A LOOP FOR EVERY I IN DATA ????
+# extract "ads"  section from using regex
+# s = s = r'\"abs\":'
+# pattern = re.compile(s)
+# matches = pattern.finditer(data)
+# # identify the matches and use them to build another dataset
+# for match in matches:
+#     print(match)
+# REGEX = "ads"\:\s+\[\s+\{\s+([\s\S]*)
+# "ads"\:\s+\[\s+\{\s+([^<>]*)
+# "ads"\W+([^<>]*)
+# pattern = re.compile(r"ads\W+([^<>]*)")
+
+# for i in data:
+#     matches = pattern.finditer(i)
+#     for match in matches:
+#         print(match)
