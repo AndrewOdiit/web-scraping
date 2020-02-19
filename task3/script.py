@@ -50,28 +50,13 @@ tree = None
 response = requests.get('https://www.leboncoin.fr/recherche/',
                         headers=headers, params=params, cookies=cookies)
 if response.status_code == 200:
-    # write to file
+
     tree = html.fromstring(response.content)
-# do xPATH to script window.__REDIAL_PROPS__
-# convert content to json
-#
 else:
     print("error occured: ", response.status_code)
 assert tree is not None
 data = tree.xpath("//body/script[5]/text()")[0]
-data = str(data)
-with open('dirty.txt', 'w', encoding='utf-8') as f:
-    f.write(data)
-    f.close()
-# print(data.index("pivot"))
-# data = data.split("],")  # this is probably fine
-# # slice everything from null to pivot
-# try to clean dataset
-# print(json.dumps(data))
-#data = data[1140:]
-# the only way to search a string is through regular expressions
-# Might be time for some regular expressions!!!!!s
-# this list contains data that is not present in the demo.lxls file
+
 remove_patterns = [
     r'"images"\:\W+([\w+\W+]*?)\}\,',
     r'"body"\:\W+([\w+\W+]*?)\",',
@@ -82,16 +67,46 @@ remove_patterns = [
 # Contains regular patterns that will be
 # executed for each iteration of i inorder to
 # extract the fields for the output.xlsx
+
+# might need to make this a dictionary
 extract_patterns = [
     # publication date
+    r'"first_publication_date"\:\W([\w+\W+]*?)\"',
     # has_phone
-    # announce_id
+    r'"has_phone"\:(\w+)',
+    # announce_id/list_id #both are 10 digit numbers
+    r'"list_id"\:(\d+)',
     # type de bien
+    r'"Type de bien"\,\"value_label"\:\"(\w+)',
+    # rooms
     # area/square
+    r'"square"\W+\w+\W+(\w+)',
+    # ges
+    r'"GES"\W+\w+\W\:\"([\w+\W+]*?)\"',
     # dpe/energy rate
-    # furnished
-    # utilities
-    #details (Honoraires, Reference)
+    r'"energy_rate"\W+\w+\W\:\"([\w+\W+]*?)\"',
+    # furnished null
+    r'furnished',
+    # utilities #is null
+    r'utilities',
+    #details (Honoraires)
+    r'("Honoraires")\W+\w+\W\:\"(\w+)\"',
+    #details (Reference)
+    r'("Référence")\W+\w+\W+([\W+\w+]*?)"',
+]
+
+column_names = [
+    "first_publication_date",
+    "has_phone",
+    "list_id",
+    "type_de_bien",
+    "room",
+    "area",
+    "GES",
+    "energy_rate(DPE)",
+    "furnished",
+    "utilities",
+    "details"
 ]
 
 
@@ -107,25 +122,16 @@ def clean(patterns: list, data_list: str):  # works fine
 
 data = clean(remove_patterns, data)
 
-with open('clean.txt', 'w', encoding='utf-8') as f:
-    f.write(data)
-    f.close()
-
-# # find last occurence of has phone
-# # returns a list of indices of all occurrences of has_phone
-# data = data.strip()
-# print("after strip")
-# last = [s.start() for s in re.finditer("}", data)][-2]
-# # print(data[last])
-# data = data[:last + 1]
-
-# with open('clean.txt', 'w', encoding='utf-8') as f:
-#     f.write(data)
-
+# validates that each i is as expected
 checklist = re.findall(
-    r'{(\"list_id"\:([\W+\w+]*?)\"has_phone"\:\w+\})', data)
+    r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
 
 # write data into csv file
 
-print(len(checklist))
-print(checklist[0])
+# O(N * 2) time complexity, will try to improve this
+for i in checklist:
+    for j in extract_patterns:
+        print(re.findall(j, i))
+
+
+# 1731808713
