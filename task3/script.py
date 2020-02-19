@@ -79,6 +79,7 @@ extract_patterns = [
     # type de bien
     r'"Type de bien"\,\"value_label"\:\"(\w+)',
     # rooms
+    r'rooms\W+\w+\W+(\d+)',
     # area/square
     r'"square"\W+\w+\W+(\w+)',
     # ges
@@ -89,24 +90,34 @@ extract_patterns = [
     r'furnished',
     # utilities #is null
     r'utilities',
-    #details (Honoraires)
-    r'("Honoraires")\W+\w+\W\:\"(\w+)\"',
-    #details (Reference)
-    r'("Référence")\W+\w+\W+([\W+\w+]*?)"',
+    # details
+    r'("Honoraires"|"Référence")\W+\w+\W\:\"(\w+)\"'
 ]
 
 column_names = [
+    # publication date
     "first_publication_date",
+    # has_phone
     "has_phone",
+    # announce_id/list_id #both are 10 digit numbers
     "list_id",
-    "type_de_bien",
-    "room",
-    "area",
+    # type de bien
+    "Type de bien",
+    # rooms
+    "rooms",
+    # area/square
+    "square/area",
+    # ges
     "GES",
-    "energy_rate(DPE)",
+    # dpe/energy rate
+    "energy_rate",
+    # furnished null
     "furnished",
+    # utilities #is null
     "utilities",
-    "details"
+    # details
+    "Honoraires/Référence"
+
 ]
 
 
@@ -130,8 +141,10 @@ checklist = re.findall(
 
 # O(N * 2) time complexity, will try to improve this
 for i in checklist:
+    print("***************")
+    print("current i: ", checklist.index(i))
     for j in extract_patterns:
-        print(re.findall(j, i))
-
-
-# 1731808713
+        # need to check this to ensure it is correct
+        print("Pattern:", j)
+        print(f'{column_names[extract_patterns.index(j)]} {re.findall(j, i)}')
+        print("\n")
