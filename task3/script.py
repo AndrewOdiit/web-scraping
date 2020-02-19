@@ -80,11 +80,10 @@ patterns = [
     r'"options"\:([\W+\w+]*?)\}\,'
 ]
 
-# # the clean function removes all fields not included in the provided output.xlsx file
-# # assuming they are not needed
-
 
 def clean(patterns: list, data_list: str):  # works fine
+    # the clean function removes all fields not included in the provided output.xlsx file
+    # assuming they are not needed
     target_string = data_list
     for pattern in patterns:
         target_string = re.sub(pattern, '', target_string)
@@ -112,7 +111,7 @@ with open('clean.txt', 'w', encoding='utf-8') as f:
 checklist = re.findall(
     r'{(\"list_id"\:([\W+\w+]*?)\"has_phone"\:\w+\})', data)
 
-# checklist = [r.strip(" ") for r in checklist]
+# write data into csv file
 
 print(len(checklist))
 print(checklist[0])
