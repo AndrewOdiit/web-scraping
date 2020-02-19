@@ -72,12 +72,26 @@ with open('dirty.txt', 'w', encoding='utf-8') as f:
 # the only way to search a string is through regular expressions
 # Might be time for some regular expressions!!!!!s
 # this list contains data that is not present in the demo.lxls file
-patterns = [
+remove_patterns = [
     r'"images"\:\W+([\w+\W+]*?)\}\,',
     r'"body"\:\W+([\w+\W+]*?)\",',
     r'"location"\:([\W+\w+]*?)\}',
     r'"owner"\:\W+([\w+\W+]*?)\},',
     r'"options"\:([\W+\w+]*?)\}\,'
+]
+# Contains regular patterns that will be
+# executed for each iteration of i inorder to
+# extract the fields for the output.xlsx
+extract_patterns = [
+    # publication date
+    # has_phone
+    # announce_id
+    # type de bien
+    # area/square
+    # dpe/energy rate
+    # furnished
+    # utilities
+    #details (Honoraires, Reference)
 ]
 
 
@@ -91,7 +105,7 @@ def clean(patterns: list, data_list: str):  # works fine
     return target_string
 
 
-data = clean(patterns, data)
+data = clean(remove_patterns, data)
 
 with open('clean.txt', 'w', encoding='utf-8') as f:
     f.write(data)
