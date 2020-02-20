@@ -21,16 +21,15 @@ answer:
 
 2.g. Find the number of rooms : “rooms”
 answer:
-("rooms"+) 
-Had 36 occurrences
+"rooms"\W+\w+\W+(\d+)
 
 2.h.a Find lat
 answer:
-"lat"\:([0-9 .]+)
+"lat"\:(\d+\.\d+)
 
 2.h.b Find lng
 answer:
-"lng"\:([0-9 .]+)
+"lng"\:(\d+\.\d+)
 
 
 

@@ -7,7 +7,7 @@ import requests
 from datetime import datetime
 
 
-def get_data(page):
+def get_data(page):  # makes requests for page data
     assert page is not None
     cookies = {
         'crfgL0cSt0r': 'true',
@@ -63,50 +63,50 @@ def get_x_path_data(response):
         print("error occured: ", response.status_code)
 
     assert tree is not None
-    with open('dirty.txt', 'w', encoding='utf-8') as f:
-        f.write(tree.xpath("//body/script[5]/text()")[0])
-        f.close()
     return tree.xpath("//body/script[5]/text()")[0]
-
-# Contains regular patterns that will be
-# executed for each iteration of i inorder to
-# extract the fields indicated in the sample extract,output.xlsx
 
 
 def write_to_csv(data: list, date: datetime, page: int):
     # This function writes the data to a csv file
     date_scraped = ('date_scraped', date)
     page_scraped = ('page_scraped', page)
-    data.append(date_scraped)
-    data.append(page_scraped)
-    with open('output.csv', 'a', newline='') as csv_file:
+    data.extend(date_scraped)  # adds date_scraped to annonce
+    data.extend(page_scraped)  # adds page_scraped to annonce
+    with open('output.csv', 'a') as csv_file:
         ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
 
 
 def extract_and_save_data(data, page_scraped):
-    # validates the structure of every string in the data list
+
     date = datetime.today().strftime('%Y-%m-%d')
+    # Get all string structures that satisfy regex {list_id......has_phone: boolean}
     annonces = re.findall(
         r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
 
-    # O(N * 2) time complexity, will try to improve this
+    # O(N * 2) time complexity
     row = []  # represents a single row in csv
-    for i in annonces:
-        print("***************")
-        print("current i: ", annonces.index(i))
-        for j in target_fields:
-            print("Pattern:", j)
-            res = re.findall(j, i)
-            row.append(res)
+    # for all string structures/annonces, extract required fields
+    for annonce in annonces:
+        # apply each field-regex to each annonce to find data
+        for field in target_fields:
+            print("Pattern:", field)
+            # find all matches of field in annonce and return data
+            res = re.findall(field, annonce)
             print(res)
+            print({i for i in res})
+            if len(res) < 1:
+                res.extend("NULL")
+            row.extend(res)  # append data to row list
             # right some custome code to flatten the output
-            # migth use regex
             print("\n")
+        # assert that data being written to csv is not None
         assert len(row) > 0
+        # writes annonce to csv as row after all annonce data has been appended
         write_to_csv(row, date, page_scraped)
 
 
+# A list of regular expressions used to extract the target fields
 target_fields = [
     # last_publication_date/index_date
     r'"(index_date)":\W([\w+\W+]*?)\"',
@@ -165,8 +165,9 @@ target_fields = [
 ]
 
 if __name__ == "__main__":
-    # this needs to be done for all four pages
+
     page_count = 1
+    # while loop executes four times until fourth request is sent to fourth page
     while page_count <= 4:
         # gets data from site one page at a time
         response = get_data(page_count)

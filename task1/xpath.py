@@ -1,15 +1,18 @@
 # I created this class in order to validate the different
 # x paths for each question of number one
 from lxml import html
-import requests
+
+# Task 1  XPATH
 
 
 class XPathTester:
-    def __init__(self, url):
-        assert url != None
-        self.web_data = requests.get(url)  # retrieves data from case.html
+    def __init__(self, path):
+        assert path != None
+        self.data = None
+        with open('case.html', 'r', encoding='utf-8') as f:
+            self.data = f.read()
         # converts data to a traversable html document
-        self.tree = html.fromstring(self.web_data.content)
+        self.tree = html.fromstring(self.data)
 
     def path_data(self, element_name, path):
         # This method returns the data at the specified x-path
@@ -20,24 +23,25 @@ class XPathTester:
 
 if __name__ == "__main__":
     xpt = XPathTester("http://127.0.0.1:5500/leboncoin/task1/case.html")
+
  # Find xpath for Title of Annonce
     print(xpt.path_data(
         "Title of Annonce",
-        '//div[@class="l17WS bgMain"]/div/div[6]/div/div/div/div[2]/ul/li/a/section/div[1]/p/span/text()'))
+        '//p[@class="_2tubl"]//text()'))
 
 # Find x path for price of Annonce
     price_data = xpt.path_data(
         "Price of Annonce",
-        "//div[@class='l17WS bgMain']/div/div[6]/div/div/div/div[2]/ul/li/a/section/div[1]/div/span/span/text()")
-    price_data = [r.rstrip("\xa0â\x82¬")
-                  for r in price_data]
+        "//div[@class='_2OJ8g']//span//text()")
+    price_data = [r.strip()for r in [r.strip("\xa0â\x82¬")
+                                     for r in price_data]]
     print(price_data, "\n")
 
 
 # Find XPath for kind of annonce (“Pro”, bold)
     kind_data = xpt.path_data(
         "Kind ('Pro',Bold) of Annonce",
-        '//div[@class="l17WS bgMain"]/div/div[6]/div/div/div/div[2]/ul/li/a/section/div[2]/p/span/text()'
+        "//p[@class='CZbT3']/span[1]/text()"
     )
 
     kind_data = [r.strip("()")for r in [r.rstrip("\xa0â\x82¬")
@@ -59,12 +63,12 @@ city_zip_data = xpt.path_data(
     '//div[@class="l17WS bgMain"]/div/div[6]/div/div/div/div[2]/ul/li/a/section/div[2]/p[2]/text()'
 )
 cities_and_zip_code = [r.split(" ") for r in city_zip_data]
-
-print(cities_and_zip_code)
+print([r for r in city_zip_data])
+# print(cities_and_zip_code)
 
 # 1.g Find XPath for date
 date_data = xpt.path_data(
     "Date of Annonce",
-    '//div[@class="l17WS bgMain"]/div/div[6]/div/div/div/div[2]/ul/li[9]/a/section/div[2]/p[3]/text()'
+    "//p[@class='mAnae']/text()"
 )
 print(date_data, "\n")
