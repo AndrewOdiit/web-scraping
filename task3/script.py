@@ -7,7 +7,8 @@ import requests
 from datetime import datetime
 
 
-def get_data():
+def get_data(page):
+    assert page is not None
     cookies = {
         'crfgL0cSt0r': 'true',
         '_gcl_au': '1.1.1572045614.1581602136',
@@ -49,7 +50,7 @@ def get_data():
     }
 
     response = requests.get(
-        'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260',
+        f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}',
         headers=headers, cookies=cookies)
     return response
 
@@ -166,6 +167,10 @@ target_fields = [
 
 if __name__ == "__main__":
     # this needs to be done for all four pages
-    response = get_data()
-    data = get_x_path_data(response)
-    extract_and_write_data_to_csv(data)
+    page_count = 1
+    while page_count <= 4:
+        response = get_data(page_count)
+        data = get_x_path_data(response)
+        extract_and_write_data_to_csv(data)
+        print("page count: ", page_count)
+        page_count += 1
