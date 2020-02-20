@@ -63,6 +63,9 @@ def get_x_path_data(response):
         print("error occured: ", response.status_code)
 
     assert tree is not None
+    with open('dirty.txt', 'w', encoding='utf-8') as f:
+        f.write(tree.xpath("//body/script[5]/text()")[0])
+        f.close()
     return tree.xpath("//body/script[5]/text()")[0]
 
 # Contains regular patterns that will be
@@ -70,107 +73,107 @@ def get_x_path_data(response):
 # extract the fields indicated in the sample extract,output.xlsx
 
 
-def write_to_csv(data):
+def write_to_csv(data: list, date: datetime, page: int):
     # This function writes the data to a csv file
-    with open('output.csv', 'a', encoding='utf-8') as csv_file:
-        ads_csv = csv.writer(csv_file, delimiter="\n")
+    date_scraped = ('date_scraped', date)
+    page_scraped = ('page_scraped', page)
+    data.append(date_scraped)
+    data.append(page_scraped)
+    with open('output.csv', 'a', newline='') as csv_file:
+        ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
 
 
-def extract_and_write_data_to_csv(data):
+def extract_and_save_data(data, page_scraped):
     # validates the structure of every string in the data list
-    checklist = re.findall(
+    date = datetime.today().strftime('%Y-%m-%d')
+    annonces = re.findall(
         r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
 
-    # This method is responsible for preparing data for the csv writing
-    # use regex with 'OR' operator to strip a number of unwanted characters in a given set
-
     # O(N * 2) time complexity, will try to improve this
-    for i in checklist:
+    row = []  # represents a single row in csv
+    for i in annonces:
         print("***************")
-        print("current i: ", checklist.index(i))
+        print("current i: ", annonces.index(i))
         for j in target_fields:
-            # need to check this to ensure it is correct
             print("Pattern:", j)
             res = re.findall(j, i)
-            if res is not None:
-                if j == r'(Honoraires|Référence)\W+\w+\W\:\"(\w+)\"':
-                    res = dict((x, y) for x, y in res)
-                    # write to csv details column
-                    write_to_csv(res)
-                else:
-                    if j == r'(Honoraires|Référence)\W+\w+\W\:\"(\w+)\"':
-                        print("{}")
-                    write_to_csv(res)
-            else:
-                write_to_csv([])
-
+            row.append(res)
+            print(res)
             # right some custome code to flatten the output
             # migth use regex
             print("\n")
+        assert len(row) > 0
+        write_to_csv(row, date, page_scraped)
 
 
 target_fields = [
+    # last_publication_date/index_date
+    r'"(index_date)":\W([\w+\W+]*?)\"',
     # has_phone
-    r'"has_phone"\:(\w+)',
+    r'"(has_phone)"\W+(\w+)',
     # announce_id/list_id #both are 10 digit numbers
-    r'"list_id"\:(\d+)',
+    r'"(list_id)"\W+(\d+)',
     # type de bien
-    r'"Type de bien"\,\"value_label"\:\"(\w+)',
+    r'"(Type de bien)"\W+\w+\W+(\w+)',
     # rooms
-    r'rooms\W+\w+\W+(\d+)',
-    # area/square
-    r'"square"\W+\w+\W+(\w+)',
+    r'"(rooms)"\W+\w+\W+(\d+)',
+    # area/surface
+    r'"(Surface)"\W+\w+\W+([\d+\D+]*?)\"',
     # ges
-    r'"GES"\W+\w+\W\:\"([\w+\W+]*?)\"',
+    r'"(GES)"\W+\w+\W\:\"([\w+\W+]*?)\"',
     # dpe/energy rate
-    r'"energy_rate"\W+\w+\W\:\"([\w+\W+]*?)\"',
+    r'"(energy_rate)"\W+\w+\W\:\"([\w+\W+]*?)\"',
     # furnished null
-    r'furnished',
+    r'"(furnished)"',
     # utilities #is null
-    r'utilities',
+    r'"(utilities)"',
     # details
-    r'(Honoraires|Référence)\W+\w+\W\:\"(\w+)\"',
+    r'"(Honoraires|Référence)"\W+\w+\W\:\"(\w+)\"',
     # # "Sales_type/Category name"
-    r'"category_name"\:\W([\w+\W+]*?)\"',
+    r'"(category_name)"\W+([\w+\W+]*?)\"',
     # "Title/Subject",
-    r'"subject"\:\W([\w+\W+]*?)\"',
-    # Currency
-    r'(euro)',
+    r'"(subject)"\:\"([\w+\W+]*?)\"',
+    # "Price /cost"
+    r'(price)\W+([\d+\D+]*?)\W',
     # Text/Body,W
-    r'"body"\:\W+([\w+\W+]*?)\"',
+    r'(body)\W+([\w+\W+]*?)\"',
     # City
-    r'"city"\:\W(\w+)',
+    r'"(city_label)"\W+([\w+\W+]*?)\"',
     # postal_code
-    r'"zipcode"\:\W(\w+)',
+    r'"(zipcode)"\:"(\d+)"',
     # latitude
-    r'"lat"\:([\d+\.\d+]*)',
+    r'"(lat)"\:([\d+\.\d+]*)',
     # longitude
-    r'"lng"\:([\d+\.\d+]*)',
+    r'"(lng)"\:([\d+\.\d+]*)',
     # department_name
-    r'"department_name"\:\"([\w+\W+]*?)\"',
+    r'"(department_name)"\:\"([\w+\W+]*?)\"',
     # psuedo/name
-    r'"name"\:\W([\w+\W+]*?)\"',
+    r'"(name)"\:\W([\w+\W+]*?)\"',
     # photos
-    r'"urls_large"\:\[([\W+\w+]*?)\]',
+    r'"(urls_large)"\:\[([\W+\w+]*?)\]',
     # department_id
-    r'"department_id"\:\"(\d+)"',
+    r'"(department_id)"\:\"(\d+)"',
     # region name
-    r'"region_name"\:\"([\w+\W+]*?)\"',
+    r'"(region_name)"\:\"([\w+\W+]*?)\"',
     # advert_type/ad_type
-    r'"ad_type"\:\"([\w+]*?)\"',
+    r'"(ad_type)"\:\"([\w+]*?)\"',
     # url
-    r'"url"\:\"([\w+\W+]*?)"',
+    r'"(url)"\:\"([\w+\W+]*?)"',
     # first_publication_date
-    r'"first_publication_date"\:\W([\w+\W+]*?)\"',
+    r'"(first_publication_date)"\:\W([\w+\W+]*?)\"',
 ]
 
 if __name__ == "__main__":
     # this needs to be done for all four pages
     page_count = 1
     while page_count <= 4:
+        # gets data from site one page at a time
         response = get_data(page_count)
+        # gets x-path from request data
         data = get_x_path_data(response)
-        extract_and_write_data_to_csv(data)
+        # extracts fields from data in x_path and writes to csv file
+        extract_and_save_data(data, page_count)
+        # increments counter so next request will go to next page until page 4
         print("page count: ", page_count)
         page_count += 1
