@@ -1,9 +1,7 @@
 import requests
 import csv
 from lxml import html
-import requests
 import re
-import requests
 from datetime import datetime
 
 
