@@ -8,6 +8,7 @@ https://docs.google.com/spreadsheets/d/1Q6ibMrJDdkyIeX5iSUDqhBVGHR6s2mWWcTpO6pH7
 
 TASK 2:
 Task 2 consists of 8 seperate solutions hosted on regex101.com and a coded python version consists of all of them
+links to solutions at regex101.com:
 
 2(b) https://regex101.com/r/fYFuCp/1
 
@@ -24,6 +25,8 @@ Task 2 consists of 8 seperate solutions hosted on regex101.com and a coded pytho
 2(h) https://regex101.com/r/Gjp59K/1
 
 2(i) https://regex101.com/r/YKeqhN/1
+
+NB: Python coded solution can be found in task2 folder
 
 TASK 3
 
