@@ -13,21 +13,27 @@ Task 2 consists of 8 seperate solutions hosted on regex101.com and a coded pytho
 links to solutions at regex101.com:
 
 2(b)Find the total number of private “Annonces” : “total_private”
+
 https://regex101.com/r/fYFuCp/1
 
 2(c) Find the total number of pro “Annonces” : “total_pro”
+
 https://regex101.com/r/bCp8oB/1
 
 2(d) Find all the unique IDs of “Annonce” : “list_id”
+
 https://regex101.com/r/ecLBZ9/1
 
 2(e) Find the prices : “price”
+
 https://regex101.com/r/otuBdy/1
 
 2(f) Find the subject : “subject”
+
 https://regex101.com/r/1CdjMc/1
 
 2(g) Find the number of rooms : “rooms”
+
 link: https://regex101.com/r/JYf1B0/1
 
 2(h) Find lat
