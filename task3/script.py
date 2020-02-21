@@ -70,8 +70,8 @@ def write_to_csv(data: list, date: datetime, page: int):
     # This function writes the data to a csv file
     date_scraped = ('date_scraped', date)
     page_scraped = ('page_scraped', page)
-    data.extend(date_scraped)  # adds date_scraped to annonce
-    data.extend(page_scraped)  # adds page_scraped to annonce
+    data.append(date_scraped)  # adds date_scraped to annonce
+    data.append(page_scraped)  # adds page_scraped to annonce
     with open('output.csv', 'a') as csv_file:
         ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
@@ -94,9 +94,11 @@ def extract_and_save_data(data, page_scraped):
             # find all matches of field in annonce and return data
             res = re.findall(field, annonce)
             print(res)
-            print({i for i in res})
             if len(res) < 1:
-                res.extend("NULL")
+                if field == "(Currency)":
+                    res.append((field, "EURO"))
+                else:
+                    res.append((field, "NULL"))
             row.extend(res)  # append data to row list
             # right some custome code to flatten the output
             print("\n")
@@ -125,9 +127,9 @@ target_fields = [
     # dpe/energy rate
     r'"(energy_rate)"\W+\w+\W\:\"([\w+\W+]*?)\"',
     # furnished null
-    r'"(furnished)"',
+    r'(furnished)',
     # utilities #is null
-    r'"(utilities)"',
+    r'(utilities)',
     # details
     r'"(Honoraires|Référence)"\W+\w+\W\:\"(\w+)\"',
     # # "Sales_type/Category name"
@@ -136,6 +138,8 @@ target_fields = [
     r'"(subject)"\:\"([\w+\W+]*?)\"',
     # "Price /cost"
     r'(price)\W+([\d+\D+]*?)\W',
+    # Currency
+    r'(Currency)',
     # Text/Body,W
     r'(body)\W+([\w+\W+]*?)\"',
     # City
