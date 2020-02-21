@@ -1,0 +1,5 @@
+TASK 1:
+Task 1 consists of a five part google sheets solution as well as a python coded solution
+
+Google Sheets solution for task 1
+https://docs.google.com/spreadsheets/d/1Q6ibMrJDdkyIeX5iSUDqhBVGHR6s2mWWcTpO6pH7D1M/edit?usp=sharing
