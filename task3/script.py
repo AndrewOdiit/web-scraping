@@ -3,6 +3,7 @@ import csv
 from lxml import html
 import re
 from datetime import datetime
+from time import sleep
 
 
 def get_data(page):  # makes requests for page data
@@ -171,6 +172,7 @@ if __name__ == "__main__":
     page_count = 1
     # while loop executes four times until fourth request is sent to fourth page
     while page_count <= 4:
+        print(f"FETCHING DATA FOR PAGE {page_count}....")
         # gets data from site one page at a time
         response = get_data(page_count)
         # gets x-path from request data
@@ -178,5 +180,10 @@ if __name__ == "__main__":
         # extracts fields from data in x_path and writes to csv file
         extract_and_save_data(data, page_count)
         # increments counter so next request will go to next page until page 4
-        print("page count: ", page_count)
+        print("page count: ", page_count, "\n")
         page_count += 1
+        if page_count < 4:
+            print("Resuming in 10 seconds...")
+            sleep(10)  # waits three seconds before next request
+        else:
+            print("Exiting...")
