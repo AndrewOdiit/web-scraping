@@ -7,7 +7,7 @@ Google Sheets solution for task 1
 https://docs.google.com/spreadsheets/d/1Q6ibMrJDdkyIeX5iSUDqhBVGHR6s2mWWcTpO6pH7D1M/edit?usp=sharing
 
 TASK 2:
-Task 2 consists of a 8 solutions hosted on regex101.com and a coded python version
+Task 2 consists of 8 seperate solutions hosted on regex101.com and a coded python version consists of all of them 
 
 2(b) https://regex101.com/r/fYFuCp/1
 
