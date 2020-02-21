@@ -90,7 +90,7 @@ class XPathTester:
 
     def get_annonce_date(self):
         element_name = "Date of Annonce"
-        path = "//p[@class='mAnae']/text()"
+        path = "//p[@class='mAnae']//text()"
         return self._path_data(element_name, path)
 
 
