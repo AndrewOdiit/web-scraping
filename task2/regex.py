@@ -13,21 +13,22 @@ class RegexTester:
 
 regexTester = RegexTester()
 # Find the total number of private “Annonces” : “total_private”
-print(regexTester.match(r'\"total_private\"\:(\d+)'), "\n")
+print("Private Annonces: ", regexTester.match(
+    r'\"total_private\"\:([0-9]+)'), "\n")
 
 # Find the total number of pro “Annonces” : “total_pro”
-print("total_pro", regexTester.match(r'\"total_pro\"\:(\d+)'), "\n")
+print("total_pro's:", regexTester.match(r'\"total_pro\"\:(\d+)'), "\n")
 
 
 # Find all the unique IDs of “Annonce” : “list_id”
-print("list_id: ", regexTester.match(r'\"list_id\"\:(\d+)'), "\n")
+print("list_ids: ", regexTester.match(r'\"list_id\"\:(\d+)'), "\n")
 
 
 # Find the prices : “price”
-print("price: ", regexTester.match(r'"price"\:\[\s+(\d+)\s+\]'), "\n")
+print("prices: ", regexTester.match(r'"price"\:\[\s+(\d+)\s+\]'), "\n")
 
 # Find the subject : “subject”
-print("subject: ", regexTester.match(r'\"subject\"\:(.*)'), "\n")
+print("subjects: ", regexTester.match(r'\"subject\"\:([\W+\w+]*?)\,'), "\n")
 
 # Find the number of rooms : “rooms”
 print("rooms", regexTester.match(r'\"rooms\"\W+\w+\W+(\d+)'), "\n")
@@ -37,4 +38,4 @@ print("rooms", regexTester.match(r'\"rooms\"\W+\w+\W+(\d+)'), "\n")
 print("latitude", regexTester.match(r'\"lat\"\:(\d+\.\d+)'), "\n")
 
 # Find lng
-print("latitude", regexTester.match(r'\"lng\"\:(\d+\.\d+)'), "\n")
+print("longitude", regexTester.match(r'\"lng\"\:(\d+\.\d+)'), "\n")
