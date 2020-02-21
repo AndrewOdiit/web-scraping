@@ -2,8 +2,7 @@ from lxml import html
 import requests
 # I created this class in order to validate the different
 # x paths for each question of number one
-# Task 1  XPATH
-# This script will read from case.html, however it can  also read from remote host as well
+# This script reads from case.html, however it can  also read from remote host as well
 # if provided with request headers,cookies -- use method read_from_remote
 # and it would produce the same results in both cases
 
@@ -45,7 +44,7 @@ class XPathTester:
     def _path_data(self, element_name, x_path):
         # This method returns the data at the specified x-path
         print("\n")
-        print(f"*****PATH DATA AT XPATH for {element_name}*****\n")
+        print(f"*****DATA AT XPATH for {element_name}*****\n")
         return self.tree.xpath(x_path)
 
     def get_annonce_title(self):
