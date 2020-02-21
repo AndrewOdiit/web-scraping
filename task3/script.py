@@ -184,6 +184,6 @@ if __name__ == "__main__":
         page_count += 1
         if page_count < 4:
             print("Resuming in 10 seconds...")
-            sleep(10)  # waits three seconds before next request
+            sleep(10)  # waits 10 seconds before next request
         else:
             print("Exiting...")
