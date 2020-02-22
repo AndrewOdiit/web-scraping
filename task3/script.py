@@ -183,7 +183,7 @@ if __name__ == "__main__":
         print("page count: ", page_count, "\n")
         page_count += 1
         if page_count < 4:
-            print("Resuming in 10 seconds...")
+            print("Resuming in 10 seconds....")
             sleep(10)  # waits 10 seconds before next request
         else:
-            print("Exiting...")
+            print("Exiting....")
