@@ -9,6 +9,7 @@ class RegexTester:
         self.data = None
         with open('case.json', 'r', encoding='utf-8') as f:
             self.data = f.read()
+            f.close()
 
     def match(self, regex: str):
         return re.findall(regex, self.data)
