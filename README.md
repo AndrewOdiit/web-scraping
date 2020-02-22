@@ -1,3 +1,5 @@
+SCRAPING CHALLENGES
+
 TASK1
 
 Consists of a python based implementation for the xpaths used in google sheets,
@@ -10,7 +12,7 @@ It reads from the case.json file.
 
 TASK 3
 
-Task 3 consists of a coded python solution only that scrapes data
+Task 3 consists of a python solution only that scrapes data
 from the remote host and writes it to a csv file.
 
 NB: The links to the google sheets and regex101.com solutions have been shared via
