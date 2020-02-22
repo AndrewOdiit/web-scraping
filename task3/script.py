@@ -5,7 +5,8 @@ import re
 from datetime import datetime
 from time import sleep
 
-def get_data(page,headers,cookies):  # makes requests for page data
+def get_data(page,headers,cookies):  
+    # makes requests for page data
     assert page is not None
     response = requests.get(
         f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}',
@@ -13,7 +14,8 @@ def get_data(page,headers,cookies):  # makes requests for page data
     return response
 
 
-def get_x_path_data(response):
+def get_x_path_data(response): 
+    #extract's desired data from reponse data using x_path
     if response.status_code == 200:
 
         tree = html.fromstring(response.content)
@@ -24,8 +26,41 @@ def get_x_path_data(response):
     return tree.xpath("//body/script[5]/text()")[0]
 
 
-def write_to_csv(data: list, date: datetime, page: int):
+def extract_and_save_annonce(data:list, page:int, fields:list): 
+    #This function extracts annonce fields using a regex list and calls write_to_csv
+
+    # Get all string structures that satisfy regex {list_id......has_phone: boolean}
+    annonces = re.findall(
+        r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
+
+
+    row = []  # represents a single row in csv
+    # for all string structures/annonces, extract required fields
+    for annonce in annonces:
+        # apply each field-regex to each annonce to find data
+        for field in fields:
+            print("Pattern:", field)
+            # find all matches of field in a  single annonce and return data
+            res = re.findall(field, annonce)
+            print(res)
+            if len(res) < 1: #if no field is found
+                if field != "(Currency)": # if field is ot currency
+                    res.append((field, "NULL"))# append NULL / field not available
+                   
+                else:
+                     res.append((field, "EURO")) # append EURO for currency
+                    
+            row.extend(res)  # add data to annonce/row 
+            print("\n")
+        # assert that row is not empty
+        assert len(row) > 0
+        # writes annonce to csv as row after all annonce fields have been appended
+        write_to_csv(row,page)
+
+
+def write_to_csv(data: list, page: int): 
     # This function writes the data to a csv file
+    date = datetime.today().strftime('%Y-%m-%d') #get current date
     date_scraped = ('date_scraped', date)
     page_scraped = ('page_scraped', page)
     data.append(date_scraped)  # adds date_scraped to annonce
@@ -33,37 +68,7 @@ def write_to_csv(data: list, date: datetime, page: int):
     with open('output.csv', 'a') as csv_file:
         ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
-
-
-def extract_and_save_data(data, page_scraped):
-
-    date = datetime.today().strftime('%Y-%m-%d')
-    # Get all string structures that satisfy regex {list_id......has_phone: boolean}
-    annonces = re.findall(
-        r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
-
-    # O(N * 2) time complexity
-    row = []  # represents a single row in csv
-    # for all string structures/annonces, extract required fields
-    for annonce in annonces:
-        # apply each field-regex to each annonce to find data
-        for field in target_fields:
-            print("Pattern:", field)
-            # find all matches of field in annonce and return data
-            res = re.findall(field, annonce)
-            print(res)
-            if len(res) < 1:
-                if field == "(Currency)":
-                    res.append((field, "EURO"))
-                else:
-                    res.append((field, "NULL"))
-            row.extend(res)  # append data to row list
-            # right some custome code to flatten the output
-            print("\n")
-        # assert that data being written to csv is not None
-        assert len(row) > 0
-        # writes annonce to csv as row after all annonce data has been appended
-        write_to_csv(row, date, page_scraped)
+        csv_file.close()
 
 
 # A list of regular expressions used to extract the target fields
@@ -169,7 +174,7 @@ if __name__ == "__main__":
         
     }
 
-    page_count = 1
+    page_count = 1 #used as counter and passed as url  page parameter
     # while loop executes four times until fourth request is sent to fourth page
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
@@ -178,7 +183,7 @@ if __name__ == "__main__":
         # gets x-path from request data
         data = get_x_path_data(response)
         # extracts fields from data in x_path and writes to csv file
-        extract_and_save_data(data, page_count)
+        extract_and_save_annonce(data, page_count, target_fields)
         # increments counter so next request will go to next page until page 4
         print("page count: ", page_count, "\n")
         page_count += 1
