@@ -1,5 +1,8 @@
 import re
 
+# This class is an implementation of task 2 in conjuction with the
+# solutions hosted on regex101.com
+
 
 class RegexTester:
     def __init__(self):
