@@ -18,19 +18,14 @@ def read_data_from_file():
 
 def read_from_remote():
     # This method can make a request to remote host 'https://www.leboncoin.fr/recherche/*
-    # however inorder to test the method , you must provide cookies and headers
-    cookies = None
-    headers = None
-
-    assert cookies is not None
-    assert headers is not None
-
+    
+    session = requests.Session()
+    session.headers.update({'User-Agent':'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0'})
     params = (
         ('category', '9'),
         ('locations', 'Cassis_13260'),
     )
-    response = requests.get('https://www.leboncoin.fr/recherche/',
-                            headers=headers, params=params, cookies=cookies)
+    response = session.get('https://www.leboncoin.fr/recherche/', params=params)
 
     return response.content
 
@@ -95,9 +90,12 @@ class XPathTester:
 
 
 if __name__ == "__main__":
-    data = read_data_from_file()
-    #data = read_from_remote()
+    #data = read_data_from_file()
+    print("Retrieving annonce data...")
+    data = read_from_remote()
     xpt = XPathTester(data)
+    assert xpt is not None
+    print("Processing xpaths...")
     # Find xpath for Title of Annonce
     print(xpt.get_annonce_title())
     # Find x path for price of Annonce
