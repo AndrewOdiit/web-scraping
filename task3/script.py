@@ -75,12 +75,7 @@ def write_to_csv(data: list, page: int):
     page_scraped = ('page_scraped', page)
     data.append(date_scraped)  # adds date_scraped to annonce
     data.append(page_scraped)  # adds page_scraped to annonce
-    headers = ['id', 'last_publication_date','has_phone','announce_id',
-         'type de bien','rooms','area','GES','energy_rate(DPE)','furnished',
-         'utilities','details','Category name','Title','Price','Currency',
-         'Text','City','Zip code','lat','long','department_name','region_name',
-         'ad_type','url','first_publication_date'
-    ]
+   
     with open('output.csv', 'a',encoding='utf-8') as csv_file:
         ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
