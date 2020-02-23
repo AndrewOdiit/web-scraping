@@ -155,7 +155,7 @@ if __name__ == "__main__":
     }
 
     page_count = 1 #used as counter and passed as url  page parameter
-    # LOOKING FOR ALTERNATIVE TO THIS WHILE LOOP
+    # LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
         # gets data from site one page at a time
