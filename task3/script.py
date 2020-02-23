@@ -144,7 +144,8 @@ target_fields = [
 ]
 
 if __name__ == "__main__":
-    #using both Mozilla and firefox
+    # a list of user agents from which one will be randomly picked for every new request
+    #Mozilla, Chrome, Opera Mini
     user_agents = [
          'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
          'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36',
