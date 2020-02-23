@@ -10,6 +10,7 @@ import sys
 
 def get_data(page,user_agent):  
     # makes requests for page data
+    print("User Agent: ", user_agent)
     session = requests.Session()
     session.headers.update({'User-Agent':user_agent})
     try:
@@ -144,8 +145,10 @@ target_fields = [
 
 if __name__ == "__main__":
     #using both Mozilla and firefox
-    user_agents = ['Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
-         'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36'
+    user_agents = [
+         'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
+         'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36',
+         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 OPR/66.0.3515.103'
           ]
 
     page_count = 1 #used as counter and passed as url  page parameter
