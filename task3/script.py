@@ -4,14 +4,21 @@ from lxml import html
 import re
 from datetime import datetime
 from time import sleep
+import sys
 
 def get_data(page,headers,cookies):  
     # makes requests for page data
-    assert page is not None
-    response = requests.get(
+    try:
+        assert page is not None
+        response = requests.get(
         f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}',
         headers=headers, cookies=cookies)
-    return response
+        return response
+    except requests.HTTPError as e:
+        sys.exit(e)
+    except requests.ConnectionError as e:
+        sys.exit(e)
+    
 
 
 def get_x_path_data(response): 
@@ -65,7 +72,7 @@ def write_to_csv(data: list, page: int):
     page_scraped = ('page_scraped', page)
     data.append(date_scraped)  # adds date_scraped to annonce
     data.append(page_scraped)  # adds page_scraped to annonce
-    with open('output.csv', 'a') as csv_file:
+    with open('output.csv', 'a',encoding='utf-8') as csv_file:
         ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
         csv_file.close()
@@ -175,7 +182,7 @@ if __name__ == "__main__":
     }
 
     page_count = 1 #used as counter and passed as url  page parameter
-    # while loop executes four times until fourth request is sent to fourth page
+    # LOOKING FOR ALTERNATIVE TO THIS WHILE LOOP
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
         # gets data from site one page at a time
@@ -192,5 +199,6 @@ if __name__ == "__main__":
             sleep(10)  # waits 10 seconds before next request
         else:
             print("Exiting....")
+
 
     
