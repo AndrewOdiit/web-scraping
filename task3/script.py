@@ -4,6 +4,7 @@ from lxml import html
 import re
 from datetime import datetime
 from time import sleep
+from random import randint
 import sys
 
 def get_data(page,headers):  
@@ -51,7 +52,7 @@ def extract_and_save_annonce(data:list, page:int, fields:list):
             res = re.findall(field, annonce)
             print(res)
             if len(res) < 1: #if no field is found
-                if field != "(Currency)": # if field is ot currency
+                if field != "(Currency)": # if field is currency
                     res.append((field, "NULL"))# append NULL / field not available
                    
                 else:
@@ -168,8 +169,9 @@ if __name__ == "__main__":
         print("page count: ", page_count, "\n")
         page_count += 1
         if page_count <= 4:
-            print("Resuming in 10 seconds....")
-            sleep(10)  # waits 10 seconds before next request
+            interval = randint(10,30) #Randomize request process
+            print(f"Resuming in {interval} seconds....")
+            sleep(interval)  # waits 10 seconds before next request
         else:
             print("Exiting....")
 
