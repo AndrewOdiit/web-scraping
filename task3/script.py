@@ -5,15 +5,17 @@ import re
 from datetime import datetime
 from time import sleep
 from random import randint
+import random
 import sys
 
-def get_data(page,headers):  
+def get_data(page,user_agent):  
     # makes requests for page data
+    session = requests.Session()
+    session.headers.update({'User-Agent':user_agent})
     try:
         assert page is not None
-        response = requests.get(
-        f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}',
-        headers=headers)
+        response = session.get(
+        f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}')
         return response
     except requests.HTTPError as e:
         sys.exit(e)
@@ -73,6 +75,12 @@ def write_to_csv(data: list, page: int):
     page_scraped = ('page_scraped', page)
     data.append(date_scraped)  # adds date_scraped to annonce
     data.append(page_scraped)  # adds page_scraped to annonce
+    headers = ['id', 'last_publication_date','has_phone','announce_id',
+         'type de bien','rooms','area','GES','energy_rate(DPE)','furnished',
+         'utilities','details','Category name','Title','Price','Currency',
+         'Text','City','Zip code','lat','long','department_name','region_name',
+         'ad_type','url','first_publication_date'
+    ]
     with open('output.csv', 'a',encoding='utf-8') as csv_file:
         ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
@@ -114,7 +122,7 @@ target_fields = [
     # Text/Body,W
     r'(body)\W+([\w+\W+]*?)\"',
     # City
-    r'"(city_label)"\W+([\w+\W+]*?)\"',
+    r'"(city)"\W+([\w+\W+]*?)\"',
     # postal_code
     r'"(zipcode)"\:"(\d+)"',
     # latitude
@@ -140,27 +148,18 @@ target_fields = [
 ]
 
 if __name__ == "__main__":
-
-    headers = {
-        'Connection': 'keep-alive',
-        'Cache-Control': 'max-age=0',
-        'Upgrade-Insecure-Requests': '1',
-        'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36',
-        'Sec-Fetch-Dest': 'document',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'Sec-Fetch-Site': 'cross-site',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-User': '?1',
-        'Accept-Language': 'en-US,en-GB;q=0.9,en;q=0.8,fr;q=0.7',
-        
-    }
+    #using both Mozilla and firefox
+    user_agents = ['Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
+         'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36'
+          ]
 
     page_count = 1 #used as counter and passed as url  page parameter
     # LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
-        # gets data from site one page at a time
-        response = get_data(page_count,headers)
+        # randomize user_agent per request
+        user_agent = random.choice(user_agents)
+        response = get_data(page_count,user_agent)
         # gets x-path from request data
         data = get_x_path_data(response)
         # extracts fields from data in x_path and writes to csv file
@@ -169,9 +168,9 @@ if __name__ == "__main__":
         print("page count: ", page_count, "\n")
         page_count += 1
         if page_count <= 4:
-            interval = randint(10,30) #Randomize request process
+            interval = randint(10,30) #Randomize wait interval between requestss
             print(f"Resuming in {interval} seconds....")
-            sleep(interval)  # waits 10 seconds before next request
+            sleep(interval) 
         else:
             print("Exiting....")
 
