@@ -75,7 +75,7 @@ def write_to_csv(data: list, page: int):
     page_scraped = ('page_scraped', page)
     data.append(date_scraped)  # adds date_scraped to annonce
     data.append(page_scraped)  # adds page_scraped to annonce
-   
+
     with open('output.csv', 'a',encoding='utf-8') as csv_file:
         ads_csv = csv.writer(csv_file)
         ads_csv.writerow(data)
@@ -101,9 +101,9 @@ target_fields = [
     # dpe/energy rate
     r'"(energy_rate)"\W+\w+\W\:\"([\w+\W+]*?)\"',
     # furnished null
-    r'(furnished)',
+    r'furnished',
     # utilities #is null
-    r'(utilities)',
+    r'utilities',
     # details
     r'"(Honoraires|Référence)"\W+\w+\W\:\"(\w+)\"',
     # # "Sales_type/Category name"
@@ -113,7 +113,7 @@ target_fields = [
     # "Price /cost"
     r'(price)\W+([\d+\D+]*?)\W',
     # Currency
-    r'(Currency)',
+    r'Currency',
     # Text/Body,W
     r'(body)\W+([\w+\W+]*?)\"',
     # City
