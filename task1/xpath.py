@@ -90,9 +90,9 @@ class XPathTester:
 
 
 if __name__ == "__main__":
-    #data = read_data_from_file()
     print("Retrieving annonce data...")
-    data = read_from_remote()
+    #data = read_from_remote()
+    data = read_data_from_file()
     xpt = XPathTester(data)
     assert xpt is not None
     print("Processing xpaths...")
