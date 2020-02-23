@@ -37,111 +37,111 @@ def get_x_path_data(response):
     return tree.xpath("//body/script[5]/text()")[0]
 
 
-def extract_and_save_annonce(data:list, page:int, fields:list): 
+def extract_and_save_annonce(data:list, page:int, fields_dict:list): 
     #This function extracts annonce fields using a regex list and calls write_to_csv
 
     # Get all string structures that satisfy regex {list_id......has_phone: boolean}
     annonces = re.findall(
         r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
 
+    headers = [list(i.keys())[0] for i in fields_dict] #get headers
+    fields = [list(i.values())[0] for i in fields_dict] #get fields
 
+    assert len(headers) == len(fields)
     row = []  # represents a single row in csv
     # for all string structures/annonces, extract required fields
     for annonce in annonces:
-        # apply each field-regex to each annonce to find data
         for field in fields:
-            print("Pattern:", field)
-            # find all matches of field in a  single annonce and return data
-            res = re.findall(field, annonce)
-            print(res)
-            if len(res) < 1: #if no field is found
-                if field != "(Currency)": # if field is currency
-                    res.append((field, "NULL"))# append NULL / field not available
-                   
+            res = re.findall(field,annonce)
+            title = headers[fields.index(field)]
+            if len(res) > 0:
+                res = dict((x, y) for x, y in res)
+                row.append(res)
+            else:
+                if title == "Currency":
+                    row.append({title:"EURO"})
                 else:
-                     res.append((field, "EURO")) # append EURO for currency
-                    
-            row.extend(res)  # add data to annonce/row 
-            print("\n")
-        # assert that row is not empty
-        assert len(row) > 0
-        # writes annonce to csv as row after all annonce fields have been appended
+                    row.append({title:"NULL"})
         write_to_csv(row,page)
+
+   
 
 
 def write_to_csv(data: list, page: int): 
     # This function writes the data to a csv file
     date = datetime.today().strftime('%Y-%m-%d') #get current date
-    date_scraped = ('date_scraped', date)
-    page_scraped = ('page_scraped', page)
+    date_scraped = {'date_scraped': date}
+    page_scraped = {'page_scraped': page}
     data.append(date_scraped)  # adds date_scraped to annonce
     data.append(page_scraped)  # adds page_scraped to annonce
 
     with open('output.csv', 'a',encoding='utf-8') as csv_file:
-        ads_csv = csv.writer(csv_file)
+        ads_csv = csv.writer(csv_file,quoting=csv.QUOTE_NONE, escapechar='\\')
         ads_csv.writerow(data)
         csv_file.close()
 
 
 # A list of regular expressions used to extract the target fields
+
 target_fields = [
     # last_publication_date/index_date
-    r'"(index_date)":\W([\w+\W+]*?)\"',
+    {'last_publication_date': r'"(index_date)":\W([\w+\W+]*?)\"'},
     # has_phone
-    r'"(has_phone)"\W+(\w+)',
+    {'has_phone':r'"(has_phone)"\W+(\w+)'},
     # announce_id/list_id #both are 10 digit numbers
-    r'"(list_id)"\W+(\d+)',
+    {'annonce_id':r'"(list_id)"\W+(\d+)'},
     # type de bien
-    r'"(Type de bien)"\W+\w+\W+(\w+)',
+    {'type_de_bien':r'"(Type de bien)"\W+\w+\W+(\w+)'},
     # rooms
-    r'"(rooms)"\W+\w+\W+(\d+)',
+    {'rooms':r'"(rooms)"\W+\w+\W+(\d+)'},
     # area/surface
-    r'"(Surface)"\W+\w+\W+([\d+\D+]*?)\"',
+    {'area':r'"(Surface)"\W+\w+\W+([\d+\D+]*?)\"'},
     # ges
-    r'"(GES)"\W+\w+\W\:\"([\w+\W+]*?)\"',
+    {'GES':r'"(GES)"\W+\w+\W\:\"([\w+\W+]*?)\"'},
     # dpe/energy rate
-    r'"(energy_rate)"\W+\w+\W\:\"([\w+\W+]*?)\"',
+    {'DPE':r'"(energy_rate)"\W+\w+\W\:\"([\w+\W+]*?)\"'},
     # furnished null
-    r'furnished',
+    {'Furnished':r'furnished'},
     # utilities #is null
-    r'utilities',
+    {'Utilities':r'utilities'},
     # details
-    r'"(Honoraires|Référence)"\W+\w+\W\:\"(\w+)\"',
+    {'Details':r'(Honoraires|Référence)\W+\w+\W\:\"(\w+)\"'},
     # # "Sales_type/Category name"
-    r'"(category_name)"\W+([\w+\W+]*?)\"',
+    {'Sales_type': r'"(category_name)"\W+([\w+\W+]*?)\"'},
     # "Title/Subject",
-    r'"(subject)"\:\"([\w+\W+]*?)\"',
+    {'Subject':r'"(subject)"\:\"([\w+\W+]*?)\"'},
     # "Price /cost"
-    r'(price)\W+([\d+\D+]*?)\W',
+    {'Price':r'(price)\W+([\d+\D+]*?)\W'},
     # Currency
-    r'Currency',
+    {'Currency':r'Currency'},
     # Text/Body,W
-    r'(body)\W+([\w+\W+]*?)\"',
+    {'Body':r'(body)\W+([\w+\W+]*?)\"'},
     # City
-    r'"(city)"\W+([\w+\W+]*?)\"',
+    {'City': r'"(city)"\:\"([\w+\W]*?)"'},
     # postal_code
-    r'"(zipcode)"\:"(\d+)"',
+    {'Postal Code': r'"(zipcode)"\:"(\d+)"'},
     # latitude
-    r'"(lat)"\:([\d+\.\d+]*)',
+    {'Lat': r'"(lat)"\:([\d+\.\d+]*)'},
     # longitude
-    r'"(lng)"\:([\d+\.\d+]*)',
+    {'Lng':r'"(lng)"\:([\d+\.\d+]*)'},
     # department_name
-    r'"(department_name)"\:\"([\w+\W+]*?)\"',
+    {'department name': r'"(department_name)"\:\"([\w+\W+]*?)\"'},
     # psuedo/name
-    r'"(name)"\:\W([\w+\W+]*?)\"',
+    {'Psuedo': r'"(name)"\:\W([\w+\W+]*?)\"'},
     # photos
-    r'"(urls_large)"\:\[([\W+\w+]*?)\]',
+    {'Photos':r'"(urls_large)"\:\[([\W+\w+]*?)\]'},
     # department_id
-    r'"(department_id)"\:\"(\d+)"',
+    {'department_id': r'"(department_id)"\:\"(\d+)"'},
     # region name
-    r'"(region_name)"\:\"([\w+\W+]*?)\"',
+    {'region_name':r'"(region_name)"\:\"([\w+\W+]*?)\"'},
     # advert_type/ad_type
-    r'"(ad_type)"\:\"([\w+]*?)\"',
+    {'ad_type': r'"(ad_type)"\:\"([\w+]*?)\"'},
     # url
-    r'"(url)"\:\"([\w+\W+]*?)"',
+    {'url':r'"(url)"\:\"([\w+\W+]*?)"'},
     # first_publication_date
-    r'"(first_publication_date)"\:\W([\w+\W+]*?)\"',
+    {'first_publication_date':r'"(first_publication_date)"\:\W([\w+\W+]*?)\"'},
 ]
+
 
 if __name__ == "__main__":
     # a list of user agents from which one will be randomly picked for every new request
