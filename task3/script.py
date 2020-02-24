@@ -55,7 +55,7 @@ def extract_and_save_annonce(data:list, page:int, fields_dict:list):
             res = re.findall(field,annonce)
             title = headers[fields.index(field)]
             if len(res) > 0:
-                if title == "Details": #can produce multiple
+                if title == "Details": #can have Honoraires  or Reference or both
                     res = dict((x, y) for x, y in res)
                     res = {title:res.copy()}
                 else:
