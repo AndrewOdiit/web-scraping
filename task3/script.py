@@ -55,7 +55,11 @@ def extract_and_save_annonce(data:list, page:int, fields_dict:list):
             res = re.findall(field,annonce)
             title = headers[fields.index(field)]
             if len(res) > 0:
-                res = dict((x, y) for x, y in res)
+                if title == "Details": #can produce multiple
+                    res = dict((x, y) for x, y in res)
+                    res = {title:res.copy()}
+                else:
+                    res = dict((title, y) for  y in res)
                 row.append(res)
             else:
                 if title == "Currency":
@@ -85,21 +89,21 @@ def write_to_csv(data: list, page: int):
 
 target_fields = [
     # last_publication_date/index_date
-    {'last_publication_date': r'"(index_date)":\W([\w+\W+]*?)\"'},
+    {'last_publication_date': r'"index_date":\W([\w+\W+]*?)\"'},
     # has_phone
-    {'has_phone':r'"(has_phone)"\W+(\w+)'},
+    {'has_phone':r'"has_phone"\W+(\w+)'},
     # announce_id/list_id #both are 10 digit numbers
-    {'annonce_id':r'"(list_id)"\W+(\d+)'},
+    {'annonce_id':r'"list_id"\W+(\d+)'},
     # type de bien
-    {'type_de_bien':r'"(Type de bien)"\W+\w+\W+(\w+)'},
+    {'type_de_bien':r'"Type de bien"\W+\w+\W+(\w+)'},
     # rooms
-    {'rooms':r'"(rooms)"\W+\w+\W+(\d+)'},
+    {'rooms':r'"rooms"\W+\w+\W+(\d+)'},
     # area/surface
-    {'area':r'"(Surface)"\W+\w+\W+([\d+\D+]*?)\"'},
+    {'area':r'"Surface"\W+\w+\W+([\d+\D+]*?)\"'},
     # ges
-    {'GES':r'"(GES)"\W+\w+\W\:\"([\w+\W+]*?)\"'},
+    {'GES':r'"GES"\W+\w+\W\:\"([\w+\W+]*?)\"'},
     # dpe/energy rate
-    {'DPE':r'"(energy_rate)"\W+\w+\W\:\"([\w+\W+]*?)\"'},
+    {'DPE':r'"energy_rate"\W+\w+\W\:\"([\w+\W+]*?)\"'},
     # furnished null
     {'Furnished':r'furnished'},
     # utilities #is null
@@ -107,39 +111,39 @@ target_fields = [
     # details
     {'Details':r'(Honoraires|Référence)\W+\w+\W\:\"(\w+)\"'},
     # # "Sales_type/Category name"
-    {'Sales_type': r'"(category_name)"\W+([\w+\W+]*?)\"'},
+    {'Sales_type': r'"category_name"\W+([\w+\W+]*?)\"'},
     # "Title/Subject",
-    {'Subject':r'"(subject)"\:\"([\w+\W+]*?)\"'},
+    {'Subject':r'"subject"\:\"([\w+\W+]*?)\"'},
     # "Price /cost"
-    {'Price':r'(price)\W+([\d+\D+]*?)\W'},
+    {'Price':r'price\W+([\d+\D+]*?)\W'},
     # Currency
     {'Currency':r'Currency'},
     # Text/Body,W
-    {'Body':r'(body)\W+([\w+\W+]*?)\"'},
+    {'Body':r'body\W+([\w+\W+]*?)\"'},
     # City
-    {'City': r'"(city)"\:\"([\w+\W]*?)"'},
+    {'City': r'"city"\:\"([\w+\W]*?)"'},
     # postal_code
-    {'Postal Code': r'"(zipcode)"\:"(\d+)"'},
+    {'Postal Code': r'"zipcode"\:"(\d+)"'},
     # latitude
-    {'Lat': r'"(lat)"\:([\d+\.\d+]*)'},
+    {'Lat': r'"lat"\:([\d+\.\d+]*)'},
     # longitude
-    {'Lng':r'"(lng)"\:([\d+\.\d+]*)'},
+    {'Lng':r'"lng"\:([\d+\.\d+]*)'},
     # department_name
-    {'department name': r'"(department_name)"\:\"([\w+\W+]*?)\"'},
+    {'department name': r'"department_name"\:\"([\w+\W+]*?)\"'},
     # psuedo/name
-    {'Psuedo': r'"(name)"\:\W([\w+\W+]*?)\"'},
+    {'Psuedo': r'"name"\:\W([\w+\W+]*?)\"'},
     # photos
-    {'Photos':r'"(urls_large)"\:\[([\W+\w+]*?)\]'},
+    {'Photos':r'"urls_large"\:\[([\W+\w+]*?)\]'},
     # department_id
-    {'department_id': r'"(department_id)"\:\"(\d+)"'},
+    {'department_id': r'"department_id"\:\"(\d+)"'},
     # region name
-    {'region_name':r'"(region_name)"\:\"([\w+\W+]*?)\"'},
+    {'region_name':r'"region_name"\:\"([\w+\W+]*?)\"'},
     # advert_type/ad_type
-    {'ad_type': r'"(ad_type)"\:\"([\w+]*?)\"'},
+    {'ad_type': r'"ad_type"\:\"([\w+]*?)\"'},
     # url
-    {'url':r'"(url)"\:\"([\w+\W+]*?)"'},
+    {'url':r'"url"\:\"([\w+\W+]*?)"'},
     # first_publication_date
-    {'first_publication_date':r'"(first_publication_date)"\:\W([\w+\W+]*?)\"'},
+    {'first_publication_date':r'"first_publication_date"\:\W([\w+\W+]*?)\"'},
 ]
 
 
