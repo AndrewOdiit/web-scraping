@@ -76,7 +76,7 @@ def write_to_csv(data: list, page: int):
     data.append(page_scraped)  # adds page_scraped to annonce
 
     with open('output.csv', 'a',encoding='utf-8') as csv_file:
-        ads_csv = csv.writer(csv_file,quoting=csv.QUOTE_NONE, escapechar='\\')
+        ads_csv = csv.writer(csv_file,quoting=csv.QUOTE_NONNUMERIC)
         ads_csv.writerow(data)
         csv_file.close()
 
