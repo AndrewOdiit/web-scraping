@@ -74,10 +74,8 @@ def extract_and_save_annonce(data:list, page:int, fields_dict:list):
 def write_to_csv(data: list, page: int): 
     # This function writes the data to a csv file
     date = datetime.today().strftime('%Y-%m-%d') #get current date
-    date_scraped = {'date_scraped': date}
-    page_scraped = {'page_scraped': page}
-    data.append(date_scraped)  # adds date_scraped to annonce
-    data.append(page_scraped)  # adds page_scraped to annonce
+    data.append({'date_scraped': date})  # adds date_scraped to annonce
+    data.append({'page_scraped': page})  # adds page_scraped to annonce
 
     with open('output.csv', 'a',encoding='utf-8') as csv_file:
         ads_csv = csv.writer(csv_file,quoting=csv.QUOTE_NONNUMERIC)
