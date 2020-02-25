@@ -43,34 +43,29 @@ def extract_and_save_annonce(data:list, page:int, fields_dict:list):
     # Get all string structures that satisfy regex {list_id......has_phone: boolean}
     annonces = re.findall(
         r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
-
+    print(len(annonces))
     headers = [list(i.keys())[0] for i in fields_dict] #get headers
     fields = [list(i.values())[0] for i in fields_dict] #get fields
 
-    assert len(headers) == len(fields)
-    row = []  # represents a single row in csv
-    # for all string structures/annonces, extract required fields
     for annonce in annonces:
+        res = {}
+        row = []
         for field in fields:
-            res = re.findall(field,annonce)
+            match = re.findall(field,annonce)
             title = headers[fields.index(field)]
-            if len(res) > 0:
+            if len(match) > 0:
                 if title == "Details": #can have Honoraires  or Reference or both
-                    res = dict((x, y) for x, y in res)
-                    res = {title:res.copy()}
+                    res.update(dict((x, y) for x, y in match))
                 else:
-                    res = dict((title, y) for  y in res)
-                row.append(res)
+                    res.update(dict((title, y) for  y in match))
             else:
                 if title == "Currency":
-                    row.append({title:"EURO"})
+                    res.update({title:"EURO"})
                 else:
-                    row.append({title:"NULL"})
+                    res.update({title:"NULL"})
+        row.append(res)
+      
         write_to_csv(row,page)
-
-   
-
-
 def write_to_csv(data: list, page: int): 
     # This function writes the data to a csv file
     date = datetime.today().strftime('%Y-%m-%d') #get current date
@@ -174,6 +169,3 @@ if __name__ == "__main__":
             sleep(interval) 
         else:
             print("Exiting....")
-
-
-    
