@@ -7,6 +7,7 @@ from time import sleep
 from random import randint
 import random
 import sys
+import os.path
 
 def get_data(page,user_agent):  
     # makes requests for page data
@@ -37,45 +38,57 @@ def get_x_path_data(response):
     return tree.xpath("//body/script[5]/text()")[0]
 
 
-def extract_and_save_annonce(data:list, page:int, fields_dict:list): 
+def extract_and_save_annonce(data:list, page:int, fields_dict:list,csv_writer): 
     #This function extracts annonce fields using a regex list and calls write_to_csv
 
     # Get all string structures that satisfy regex {list_id......has_phone: boolean}
     annonces = re.findall(
         r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
-    print(len(annonces))
-    headers = [list(i.keys())[0] for i in fields_dict] #get headers
-    fields = [list(i.values())[0] for i in fields_dict] #get fields
 
+    headers = [list(i.keys())[0] for i in fields_dict] #get headers
+    headers.extend(['date_scraped','page_scraped'])
+    fields = [list(i.values())[0] for i in fields_dict] #get fields
+    rows = []
     for annonce in annonces:
         res = {}
-        row = []
         for field in fields:
             match = re.findall(field,annonce)
             title = headers[fields.index(field)]
             if len(match) > 0:
                 if title == "Details": #can have Honoraires  or Reference or both
-                    res.update(dict((x, y) for x, y in match))
+                    res.update({title: dict((x, y) for x, y in match)})
                 else:
                     res.update(dict((title, y) for  y in match))
             else:
                 if title == "Currency":
-                    res.update({title:"EURO"})
+                    res.update({title:"EUR"})
                 else:
                     res.update({title:"NULL"})
-        row.append(res)
-      
-        write_to_csv(row,page)
-def write_to_csv(data: list, page: int): 
-    # This function writes the data to a csv file
-    date = datetime.today().strftime('%Y-%m-%d') #get current date
-    data.append({'date_scraped': date})  # adds date_scraped to annonce
-    data.append({'page_scraped': page})  # adds page_scraped to annonce
+        
+        date = datetime.today().strftime('%Y-%m-%d') #get current date
+        res.update({'date_scraped': date})  # adds date_scraped to annonce
+        res.update({'page_scraped': page})  # adds page_scraped to annonce
+        rows.append(res)
+        final_rows = isUnique(rows)
+    csv_writer.write_to_csv(final_rows,page, headers)
+#ensures that all data written to csv is unique
 
-    with open('output.csv', 'a',encoding='utf-8') as csv_file:
-        ads_csv = csv.writer(csv_file,quoting=csv.QUOTE_NONNUMERIC)
-        ads_csv.writerow(data)
-        csv_file.close()
+def isUnique(row:list):
+   return  list({v['annonce_id']:v for v in row}.values())
+
+
+class Csvwriter:
+    def __init__(self, filename):
+        self.filename = filename
+    
+    def write_to_csv(self, data: list, page: int, headers:list): 
+        # This function writes the data to a csv filed
+        file_exists = os.path.isfile(self.filename)
+        with open('output.csv','a') as f:
+            csv_writer = csv.DictWriter(f,fieldnames=headers)
+            if not file_exists:
+                csv_writer.writeheader()
+            csv_writer.writerows(data)
 
 
 # A list of regular expressions used to extract the target fields
@@ -150,7 +163,7 @@ if __name__ == "__main__":
           ]
 
     page_count = 1 #used as counter and passed as url  page parameter
-    # LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
+    csv_writer = Csvwriter('output.csv')
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
         # randomize user_agent per request
@@ -159,12 +172,12 @@ if __name__ == "__main__":
         # gets x-path from request data
         data = get_x_path_data(response)
         # extracts fields from data in x_path and writes to csv file
-        extract_and_save_annonce(data, page_count, target_fields)
+        extract_and_save_annonce(data, page_count, target_fields,csv_writer)
         # increments counter so next request will go to next page until page 4
         print("page count: ", page_count, "\n")
         page_count += 1
         if page_count <= 4:
-            interval = randint(10,30) #Randomize wait interval between requestss
+            interval = randint(5,15) #Randomize wait interval between requestss
             print(f"Resuming in {interval} seconds....")
             sleep(interval) 
         else:
