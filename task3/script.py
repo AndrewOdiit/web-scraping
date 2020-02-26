@@ -7,7 +7,7 @@ from time import sleep
 from random import randint
 import random
 import sys
-import os.path
+import os
 
 def get_data(page,user_agent):  
     # makes requests for page data
@@ -164,6 +164,8 @@ if __name__ == "__main__":
 
     page_count = 1 #used as counter and passed as url  page parameter
     csv_writer = Csvwriter('output.csv')
+
+    #CURRENTY LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
         # randomize user_agent per request
