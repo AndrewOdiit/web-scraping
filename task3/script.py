@@ -175,6 +175,9 @@ if __name__ == "__main__":
     page_count = 1 #used as counter and passed as url  page parameter
     csv_writer = Csvwriter('output.csv')
 
+    if len(cookies) < 1 or len(headers) < 1:
+        print("****COOKIES AND HEADERS MUST BE PROVIDED***")
+        sys.exit(1)
     #CURRENTY LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
