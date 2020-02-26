@@ -12,8 +12,7 @@ It reads from the case.json file.
 
 TASK 3
 
-Task 3 consists of a python solution only that scrapes data
-from the remote host and writes it to a csv file.
+Task 3 consists of a python solution only that scrapes data from pages 1 to 4 of remote host. Inorder to execute the script ,remember to update url cookies and headers.
 
 NB: The links to the google sheets and regex101.com solutions have been shared via
 google drive
