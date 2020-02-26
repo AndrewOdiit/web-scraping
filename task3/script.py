@@ -5,20 +5,21 @@ import re
 from datetime import datetime
 from time import sleep
 from random import randint
+from shadow_useragent import ShadowUserAgent
 import random
 import sys
 import os
 
 def get_data(page,user_agent, headers,cookies):  
     # makes requests for page data
-    print("User Agent: ", user_agent)
+    #print("User Agent: ", user_agent)
     session = requests.Session()
-    headers.update({'User-Agent':user_agent})
+    #headers.update({'User-Agent':user_agent})
     try:
         assert page is not None
         response = session.get(
-        f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}'
-        ,headers=headers,cookies=cookies)
+        f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}',headers=headers,cookies=cookies
+        )
         print("response status:", response.status_code)
         return response
     except requests.HTTPError as e:
@@ -161,28 +162,28 @@ target_fields = [
 if __name__ == "__main__":
     # a list of user agents from which one will be randomly picked for every new request
     #Mozilla, Chrome, Opera Mini
-    user_agents = [
-         'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
-         'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36',
-         'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 OPR/66.0.3515.103'
-          ]
+    # user_agents = [
+    #      'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
+    #      'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36',
+    #      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 OPR/66.0.3515.103'
+    #       ]
+    
+    import requests
 
+    cookies = {}
 
-    cookies = { }
-
-    headers = { }
+    headers = {}
+    if len(cookies) < 1 or len(headers) < 1:
+        sys.exit("****HEADERS AND COOKIES ARE REQUIRED TO MAKE REQUEST****")
 
     page_count = 1 #used as counter and passed as url  page parameter
     csv_writer = Csvwriter('output.csv')
-
-    if len(cookies) < 1 or len(headers) < 1:
-        print("****COOKIES AND HEADERS MUST BE PROVIDED***")
-        sys.exit(1)
+    ua = ShadowUserAgent()
     #CURRENTY LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
     while page_count <= 4:
         print(f"FETCHING DATA FOR PAGE {page_count}....")
-        # randomize user_agent per request
-        user_agent = random.choice(user_agents)
+        # Add shadow user agent
+        user_agent = ua.chrome
         response = get_data(page_count,user_agent,headers,cookies)
         # gets x-path from request data
         data = get_x_path_data(response)
@@ -192,7 +193,7 @@ if __name__ == "__main__":
         print("page count: ", page_count, "\n")
         page_count += 1
         if page_count <= 4:
-            interval = randint(5,15) #Randomize wait interval between requestss
+            interval = randint(5,60) #Randomize wait interval between requestss
             print(f"Resuming in {interval} seconds....")
             sleep(interval) 
         else:
