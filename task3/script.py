@@ -189,7 +189,6 @@ if __name__ == "__main__":
 
     assert pages is not None
 
-    page_count = 1 #used as counter and passed as url  page parameter
     csv_writer = Csvwriter('output.csv')
     ua = ShadowUserAgent().chrome
     
