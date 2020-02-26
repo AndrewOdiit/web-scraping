@@ -181,10 +181,13 @@ if __name__ == "__main__":
     ua = ShadowUserAgent()
     #CURRENTY LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
     while page_count <= 4:
+        
         print(f"FETCHING DATA FOR PAGE {page_count}....")
+
         # Add shadow user agent
         user_agent = ua.chrome
         response = get_data(page_count,user_agent,headers,cookies)
+
         # gets x-path from request data
         data = get_x_path_data(response)
         # extracts fields from data in x_path and writes to csv file
