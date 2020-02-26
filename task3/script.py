@@ -10,16 +10,30 @@ import random
 import sys
 import os
 
-def get_data(page,user_agent, headers,cookies):  
+
+def get_pages(headers,cookies):
+    print("Fetching pages....")
+    data = requests.get(f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260',
+    headers = headers,cookies=cookies)
+    assert data is not None
+    tree  = html.fromstring(data.content)
+    pages = tree.xpath("//div//nav[@class ='nMaRG']//a//@href")
+    #insert url for first page at front of url list
+    pages.insert(0,'/recherche/?category=9&locations=Cassis_13260')
+    print("pages: ",pages)
+    assert pages is not None
+    return pages
+
+
+
+def get_annonce_data(url,user_agent, headers,cookies):  
     # makes requests for page data
     #print("User Agent: ", user_agent)
     session = requests.Session()
     #headers.update({'User-Agent':user_agent})
     try:
-        assert page is not None
-        response = session.get(
-        f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260&page={page}',headers=headers,cookies=cookies
-        )
+        response = session.get(f"https://www.leboncoin.fr{url}",
+        headers=headers,cookies=cookies )
         print("response status:", response.status_code)
         return response
     except requests.HTTPError as e:
@@ -33,15 +47,17 @@ def get_data(page,user_agent, headers,cookies):
 def get_x_path_data(response): 
     #extract's desired data from reponse data using x_path
     if response.status_code == 200:
-        
         tree = html.fromstring(response.content)
         assert tree is not None
-        return tree.xpath("//body/script[5]/text()")[0]
+        annonce_data =  tree.xpath("//body/script[5]/text()")[0]
+        assert annonce_data is not None
+        assert pages is not None
+        return annonce_data
     else:
         print("error occured: ", response.status_code)
-        return 0
+        return None
 
-    
+
 
 
 def extract_and_save_annonce(data:list, page:int, fields_dict:list,csv_writer): 
@@ -160,44 +176,39 @@ target_fields = [
 
 
 if __name__ == "__main__":
-    # a list of user agents from which one will be randomly picked for every new request
-    #Mozilla, Chrome, Opera Mini
-    # user_agents = [
-    #      'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0',
-    #      'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.106 Mobile Safari/537.36',
-    #      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36 OPR/66.0.3515.103'
-    #       ]
+    visited = [] #This list will hold all visited urls
+
+    cookies = {} #PLEASE PROVIDE COOKIES
+
+    headers = {} #PLEASE PROVIDE HEADERS
     
-    import requests
-
-    cookies = {}
-
-    headers = {}
     if len(cookies) < 1 or len(headers) < 1:
         sys.exit("****HEADERS AND COOKIES ARE REQUIRED TO MAKE REQUEST****")
 
+    pages  = get_pages(headers,cookies)
+
+    assert pages is not None
+
     page_count = 1 #used as counter and passed as url  page parameter
     csv_writer = Csvwriter('output.csv')
-    ua = ShadowUserAgent()
-    #CURRENTY LOOKING FOR AN ALTERNATIVE TO THIS WHILE LOOP
-    while page_count <= 4:
-        
-        print(f"FETCHING DATA FOR PAGE {page_count}....")
-
-        # Add shadow user agent
-        user_agent = ua.chrome
-        response = get_data(page_count,user_agent,headers,cookies)
-
-        # gets x-path from request data
-        data = get_x_path_data(response)
-        # extracts fields from data in x_path and writes to csv file
-        extract_and_save_annonce(data, page_count, target_fields,csv_writer)
-        # increments counter so next request will go to next page until page 4
-        print("page count: ", page_count, "\n")
-        page_count += 1
-        if page_count <= 4:
-            interval = randint(5,60) #Randomize wait interval between requestss
-            print(f"Resuming in {interval} seconds....")
-            sleep(interval) 
+    ua = ShadowUserAgent().chrome
+    
+    for url in pages:
+        if url not in visited:
+            print("fetching from ", url)
+            response = get_annonce_data(url,ua,headers,cookies)
+            assert response is not None
+            data = get_x_path_data(response)
+            extract_and_save_annonce(data, page_count, target_fields,csv_writer)
+            visited.append(url)
+            interval = randint(5,15)
+            print(f"resuming in{interval} seconds...")
+            sleep(interval)
         else:
-            print("Exiting....")
+            print("Exiting...")
+            break
+           
+       
+
+
+    
