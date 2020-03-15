@@ -1,111 +1,114 @@
-import requests
-import csv
-from lxml import html
-import re
-from datetime import datetime
+from shadow_useragent import ShadowUserAgent
 from time import sleep
 from random import randint
-from shadow_useragent import ShadowUserAgent
-import random
-import sys
-import os
+import requests,sys
+from lxml import html
+import re,os,csv
+from datetime import datetime
+class Spider:
+    def __init__(self,cookies, request_headers,domain_names):
+        self.cookies = cookies
+        self.request_headers = request_headers
+        self.page_links = None
+        self.visited = []
+        self.domain_names = domain_names
+
+    def _get_page_links(self,base_url:str):
+        print("getting page links..")
+        data = requests.get(domain_names + base_url,headers = headers,cookies=cookies)
+        assert data is not None
+        tree  = html.fromstring(data.content)
+        pages = tree.xpath("//div//nav[@class ='nMaRG']//a//@href")
+        #insert url for first page at front of url list
+        pages.insert(0,base_url)
+        print("pages: ",pages)
+        assert pages is not None
+        self.page_links = pages
+
+    def run(self,target_fields,base_url):
+        user_agent = ShadowUserAgent().chrome
+        session = requests.Session() #may not need this
+        session.headers.update({'user_agent':user_agent})# may not need this
+        self._get_page_links(base_url)
+        assert self.page_links is not None
+        page = 1
+        for link in self.page_links:
+            if link not in self.visited:
+                print(f"Fetching data for page {page}")
+                data = self._crawl(link,session)
+                print(f"Parsing data for page {page} ")
+                parsed = self._parse_request_data(data)
+                print(f"Processing parsed data for page {page} ")
+                self._retrieve_and_save(parsed,target_fields,page)
+                print(f"Page {page} data saved successfully... ")
+                page += 1
+                interval = randint(1,15)
+                print(f"resuming in {interval} seconds... ")
+                sleep(interval)
+                self.visited.append(link)
+
+        #sends request to specified url
+        #this will loop over all urls and send requests to those
+        #not in visited
 
 
-def get_pages(headers,cookies):
-    print("Fetching pages....")
-    data = requests.get(f'https://www.leboncoin.fr/recherche/?category=9&locations=Cassis_13260',
-    headers = headers,cookies=cookies)
-    assert data is not None
-    tree  = html.fromstring(data.content)
-    pages = tree.xpath("//div//nav[@class ='nMaRG']//a//@href")
-    #insert url for first page at front of url list
-    pages.insert(0,'/recherche/?category=9&locations=Cassis_13260')
-    print("pages: ",pages)
-    assert pages is not None
-    return pages
+    def _crawl(self,url,session):
+        print(f"crawling...https://www.leboncoin.fr{url}")
+        try:
+            response = session.get(domain_names + url,
+            headers=self.request_headers,cookies=self.cookies )
+            assert response is not None
+            assert response.status_code == 200
+            print("response status:", response.status_code)
+            return response
+        except requests.exceptions.RequestException as e:
+            print("An error has occured: ", e)
+            sys.exit(e)
 
-
-
-def get_annonce_data(url,user_agent, headers,cookies):  
-    # makes requests for page data
-    #print("User Agent: ", user_agent)
-    session = requests.Session()
-    #headers.update({'User-Agent':user_agent})
-    try:
-        response = session.get(f"https://www.leboncoin.fr{url}",
-        headers=headers,cookies=cookies )
-        print("response status:", response.status_code)
-        return response
-    except requests.HTTPError as e:
-        print("An http error has occured: ", e)
-        sys.exit(e)
-    except requests.ConnectionError as e:
-        sys.exit(e)
-    
-
-
-def get_x_path_data(response): 
-    #extract's desired data from reponse data using x_path
-    if response.status_code == 200:
-        tree = html.fromstring(response.content)
+    def _parse_request_data(self,data):
+        #update pages list
+        #extracts desired data from response
+        tree = html.fromstring(data.content)
         assert tree is not None
         annonce_data =  tree.xpath("//body/script[5]/text()")[0]
         assert annonce_data is not None
-        assert pages is not None
         return annonce_data
-    else:
-        print("error occured: ", response.status_code)
-        return None
 
+    def _retrieve_and_save(self,data,target_fields:dict, page):
+        #This function extracts annonce fields using a regex list and calls write_to_csv
 
+        # Get all string structures that satisfy regex {list_id......has_phone: boolean}
+        annonces = re.findall(
+            r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
 
-
-def extract_and_save_annonce(data:list, page:int, fields_dict:list,csv_writer): 
-    #This function extracts annonce fields using a regex list and calls write_to_csv
-
-    # Get all string structures that satisfy regex {list_id......has_phone: boolean}
-    annonces = re.findall(
-        r'{(\"list_id"\:[\W+\w+]*?\"has_phone"\:\w+)}', data)
-
-    headers = [list(i.keys())[0] for i in fields_dict] #get headers
-    headers.extend(['date_scraped','page_scraped'])
-    fields = [list(i.values())[0] for i in fields_dict] #get fields
-    rows = []
-    for annonce in annonces:
-        res = {}
-        for field in fields:
-            match = re.findall(field,annonce)
-            title = headers[fields.index(field)]
-            if len(match) > 0:
-                if title == "Details": #can have Honoraires  or Reference or both
-                    res.update({title: dict((x, y) for x, y in match)})
+        headers = [list(i.keys())[0] for i in target_fields] #get headers
+        headers.extend(['date_scraped','page_scraped'])
+        fields = [list(i.values())[0] for i in target_fields] #get fields
+        rows = []
+        for annonce in annonces:
+            res = {}
+            for field in fields:
+                match = re.findall(field,annonce)
+                title = headers[fields.index(field)]
+                if len(match) > 0:
+                    if title == "Details": #can have Honoraires  or Reference or both
+                        res.update({title: dict((x, y) for x, y in match)})
+                    else:
+                        res.update(dict((title, y) for  y in match))
                 else:
-                    res.update(dict((title, y) for  y in match))
-            else:
-                if title == "Currency":
-                    res.update({title:"EUR"})
-                else:
-                    res.update({title:"NULL"})
-        
-        date = datetime.today().strftime('%Y-%m-%d') #get current date
-        res.update({'date_scraped': date})  # adds date_scraped to annonce
-        res.update({'page_scraped': page})  # adds page_scraped to annonce
-        rows.append(res)
-        final_rows = isUnique(rows)
-    csv_writer.write_to_csv(final_rows,page, headers)
-#ensures that all data written to csv is unique
+                    if title == "Currency":
+                        res.update({title:"EUR"})
+                    else:
+                        res.update({title:"NULL"})
+            
+            date = datetime.today().strftime('%Y-%m-%d') #get current date
+            res.update({'date_scraped': date})  # adds date_scraped to annonce
+            res.update({'page_scraped': page})  # adds page_scraped to annonce
+            rows.append(res)
+        self.save(rows,page,headers)
 
-def isUnique(row:list):
-   return  list({v['annonce_id']:v for v in row}.values())
-
-
-class Csvwriter:
-    def __init__(self, filename):
-        self.filename = filename
-    
-    def write_to_csv(self, data: list, page: int, headers:list): 
-        # This function writes the data to a csv filed
-        file_exists = os.path.isfile(self.filename)
+    def save(self, data: list, page: int, headers:list):
+        file_exists = os.path.isfile('output.csv')
         with open('output.csv','a') as f:
             csv_writer = csv.DictWriter(f,fieldnames=headers)
             if not file_exists:
@@ -113,9 +116,12 @@ class Csvwriter:
             csv_writer.writerows(data)
 
 
-# A list of regular expressions used to extract the target fields
+if __name__ =="__main__":
+    cookies = {}
 
-target_fields = [
+    headers = {}
+    
+    target_fields = [
     # last_publication_date/index_date
     {'last_publication_date': r'"index_date":\W([\w+\W+]*?)\"'},
     # has_phone
@@ -172,46 +178,18 @@ target_fields = [
     {'url':r'"url"\:\"([\w+\W+]*?)"'},
     # first_publication_date
     {'first_publication_date':r'"first_publication_date"\:\W([\w+\W+]*?)\"'},
-]
 
+    ]
 
-if __name__ == "__main__":
-    visited = [] #This list will hold all visited urls
-
-    cookies = {} #PLEASE PROVIDE COOKIES
-
-    headers = {} #PLEASE PROVIDE HEADERS
-    
     
     if len(cookies) < 1 or len(headers) < 1:
         sys.exit("****HEADERS AND COOKIES ARE REQUIRED TO MAKE REQUEST****")
+    domain_names = "https://www.leboncoin.fr"
+    spider = Spider(cookies,headers,domain_names)
+    #Get links for all pages to visit
+    spider.run(target_fields, "/recherche/?category=9&locations=Cassis_13260")
 
-    pages  = get_pages(headers,cookies)
-
-    assert pages is not None
-
-    page_count = 0 #used to track page being scraped
-    csv_writer = Csvwriter('output.csv')
-    ua = ShadowUserAgent().chrome
-    
-    for url in pages:
-        if url not in visited:
-            print("\nfetching from ", url)
-            response = get_annonce_data(url,ua,headers,cookies)
-            assert response is not None
-            data = get_x_path_data(response)
-            page_count +=1
-            extract_and_save_annonce(data, page_count, target_fields,csv_writer)
-            visited.append(url)
-            interval = randint(5,15)
-            print(f"resuming in {interval} seconds...")
-            sleep(interval)
-            
-        else:
-            print("Exiting...")
-            break
            
-       
+            
 
-
-    
+        
