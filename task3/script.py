@@ -186,7 +186,7 @@ if __name__ =="__main__":
         sys.exit("****HEADERS AND COOKIES ARE REQUIRED TO MAKE REQUEST****")
     domain_names = "https://www.leboncoin.fr"
     spider = Spider(cookies,headers,domain_names)
-    #Get links for all pages to visit
+
     spider.run(target_fields, "/recherche/?category=9&locations=Cassis_13260")
 
            
